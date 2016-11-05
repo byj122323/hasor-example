@@ -66,6 +66,11 @@
             <artifactId>jfinal</artifactId>
             <version>2.2</version>
         </dependency>
+        <dependency>
+            <groupId>net.hasor</groupId>
+            <artifactId>example-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
         <!-- freemarker -->
         <dependency>

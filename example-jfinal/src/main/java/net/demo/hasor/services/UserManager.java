@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.manager;
+package net.demo.hasor.services;
 import net.hasor.core.Singleton;
 /**
  *

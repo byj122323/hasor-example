@@ -12,6 +12,7 @@
     <name>example-root</name>
 
     <modules>
+        <module>example-client</module>
         <module>example-hasor</module>
         <module>example-spring</module>
         <module>example-jfinal</module>

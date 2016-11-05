@@ -1,7 +1,7 @@
 package net.demo.hasor.web;
 import com.jfinal.core.Controller;
 import net.demo.hasor.domain.UserDO;
-import net.demo.hasor.manager.EnvironmentConfig;
+import net.demo.hasor.services.EnvironmentConfig;
 import net.hasor.core.Inject;
 /**
  * IndexController
