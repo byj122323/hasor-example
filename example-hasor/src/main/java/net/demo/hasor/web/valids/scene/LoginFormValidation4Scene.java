@@ -15,7 +15,7 @@
  */
 package net.demo.hasor.web.valids.scene;
 import net.demo.hasor.daos.UserDao;
-import net.demo.hasor.domain.UserInfo;
+import net.demo.hasor.domain.UserDTO;
 import net.demo.hasor.web.forms.LoginForm4Scene;
 import net.hasor.core.Inject;
 import net.hasor.restful.ValidErrors;
@@ -34,7 +34,7 @@ public class LoginFormValidation4Scene implements Validation<LoginForm4Scene> {
     private void doValidLogin(LoginForm4Scene dataForm, ValidErrors errors) {
         String account = dataForm.getAccount();
         String password = dataForm.getPassword();
-        UserInfo userInfo = userDao.queryUserInfoByAccount(account);
+        UserDTO userInfo = userDao.queryUserInfoByAccount(account);
         if (userInfo == null) {
             errors.addError("login", "登陆失败,不存在的帐号。");
             return;
@@ -46,7 +46,7 @@ public class LoginFormValidation4Scene implements Validation<LoginForm4Scene> {
     }
     // - 注册登录
     private void doValidSignUp(LoginForm4Scene dataForm, ValidErrors errors) {
-        UserInfo userInfo = this.userDao.queryUserInfoByAccount(dataForm.getAccount());
+        UserDTO userInfo = this.userDao.queryUserInfoByAccount(dataForm.getAccount());
         if (userInfo != null) {
             errors.addError("signup", "帐号已经被使用,请换一个注册。");
         }

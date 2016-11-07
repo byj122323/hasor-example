@@ -13,30 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.example.jfinal.services;
-import net.hasor.core.Inject;
-import net.hasor.core.InjectSettings;
-import net.hasor.core.Singleton;
-
-import javax.servlet.ServletContext;
+package net.demo.hasor.provider;
+import net.demo.client.consumer.EchoService;
 /**
- * Hasor 定义的环境配置Bean
- * @version :2016年11月07日
+ * 服务实现
+ * @version : 2016年11月07日
  * @author 赵永春(zyc@hasor.net)
  */
-@Singleton
-public class EnvironmentConfig {
-    //注入环境变量： env.config
-    @InjectSettings("${envType}")
-    private String         envType;
-    @Inject
-    private ServletContext servletContext;
-    //
-    //
-    public String getEnvType() {
-        return envType;
-    }
-    public ServletContext getServletContext() {
-        return servletContext;
+public class EchoServiceImpl implements EchoService {
+    @Override
+    public String sayHello(String echo) throws InterruptedException {
+        Thread.sleep(100);
+        System.out.println("server : " + echo);
+        return "you say " + echo;
     }
 }

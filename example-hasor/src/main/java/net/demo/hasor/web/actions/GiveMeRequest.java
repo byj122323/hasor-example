@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 package net.demo.hasor.web.actions;
-import net.demo.hasor.domain.UserInfo;
-import net.hasor.restful.RenderData;
 import net.hasor.restful.api.MappingTo;
 
 import javax.servlet.http.HttpServletRequest;

@@ -13,38 +13,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.example.jfinal.services;
-import net.example.jfinal.domain.UserDO;
+package net.demo.hasor.services;
+import net.demo.client.domain.UserDO;
+import net.demo.hasor.daos.UserDao;
+import net.demo.hasor.domain.UserDTO;
 import net.hasor.core.Inject;
 import net.hasor.core.Singleton;
 import net.hasor.db.Transactional;
 import org.more.util.BeanUtils;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static net.hasor.db.transaction.Propagation.REQUIRED;
 /**
- * 使用 JFinal 的方式查询列表
+ *
  * @version : 2016年11月07日
  * @author 赵永春(zyc@hasor.net)
  */
 @Singleton
 public class UserManager {
     @Inject
-    private EnvironmentConfig environmentConfig;
+    private UserDao userDao;
     //
-    /** JFinal 方式查询列表 */
-    public List<UserDO> queryList() {
-        List<UserDO> userDOs = new UserDO().find("select * from TEST_USER_INFO");
-        for (UserDO info : userDOs)
-            info.recover();
-        return userDOs;
+    /** 查询列表 */
+    public List<UserDO> queryList() throws SQLException {
+        List<UserDTO> userDOs = userDao.queryList();
+        List<UserDO> userList = new ArrayList<UserDO>();
+        for (UserDTO dto : userDOs) {
+            UserDO userDO = new UserDO();
+            BeanUtils.copyProperties(userDO, dto);
+            userDO.setCreateTime(dto.getCreate_time());
+            userDO.setModifyTime(dto.getModify_time());
+            userList.add(userDO);
+        }
+        return userList;
     }
     //
-    /** JFinal 方式，添加用户，使用 Hasor 提供的数据库事务 */
+    /** 添加用户 */
     @Transactional(propagation = REQUIRED)
-    public void addUser(UserDO userDO) throws SQLException {
+    public void addUser(UserDTO userDO) throws SQLException {
         UserDO dataUser = new UserDO();
         BeanUtils.copyProperties(dataUser, userDO);
         boolean save = dataUser.setupAll().save();

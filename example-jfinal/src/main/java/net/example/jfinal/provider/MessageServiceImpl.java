@@ -18,7 +18,7 @@ import net.demo.client.consumer.MessageService;
 import net.hasor.rsf.RsfResult;
 /**
  * 服务实现
- * @version : 2015年11月27日
+ * @version : 2016年11月07日
  * @author 赵永春(zyc@hasor.net)
  */
 public class MessageServiceImpl implements MessageService {

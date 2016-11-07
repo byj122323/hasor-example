@@ -1,28 +1,11 @@
-/*
- * Copyright 2008-2009 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package net.example.jfinal.domain;
-import net.example.jfinal.core.AbstractModel;
-
+package net.demo.hasor.domain;
 import java.util.Date;
 /**
- * 用户数据
+ * UserDTO
  * @version : 2016年11月07日
  * @author 赵永春(zyc@hasor.net)
  */
-public class UserDO extends AbstractModel<UserDO> {
+public class UserDTO {
     private long   id          = 0;    // UserID（PK，自增）
     private String account     = null; // 帐号（唯一）
     private String email       = null; // email

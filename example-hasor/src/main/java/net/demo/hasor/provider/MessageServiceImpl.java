@@ -13,17 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.manager;
-import net.demo.hasor.domain.UserInfo;
-import net.hasor.core.Singleton;
+package net.demo.hasor.provider;
+import net.demo.client.consumer.MessageService;
+import net.hasor.rsf.RsfResult;
 /**
- *
- * @version : 2016年1月10日
+ * 服务实现
+ * @version : 2016年11月07日
  * @author 赵永春(zyc@hasor.net)
  */
-@Singleton
-public class UserManager {
-    public UserInfo getUserById(long userId) {
-        return new UserInfo();
+public class MessageServiceImpl implements MessageService {
+    @Override
+    public RsfResult sayHello(String echo) throws InterruptedException {
+        Thread.sleep(100);
+        System.out.println("server : " + echo);
+        return null;
     }
 }

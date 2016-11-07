@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 package net.demo.hasor.web.actions;
-import net.demo.hasor.domain.UserInfo;
+import net.demo.hasor.domain.UserDTO;
 import net.hasor.restful.RenderData;
 import net.hasor.restful.api.MappingTo;
 /**
@@ -24,7 +24,7 @@ import net.hasor.restful.api.MappingTo;
  */
 @MappingTo("/getUserInfo.json")
 public class GetUserInfo {
-    public UserInfo execute(RenderData data) {
-        return new UserInfo();
+    public UserDTO execute(RenderData data) {
+        return new UserDTO();
     }
 }

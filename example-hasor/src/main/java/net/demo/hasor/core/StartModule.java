@@ -14,16 +14,9 @@
  * limitations under the License.
  */
 package net.demo.hasor.core;
-import net.demo.hasor.domain.UserInfo;
-import net.demo.hasor.scope.SessionScope;
-import net.hasor.core.Scope;
 import net.hasor.restful.RenderEngine;
 import net.hasor.web.WebApiBinder;
 import net.hasor.web.WebModule;
-import org.more.convert.ConverterUtils;
-import org.more.convert.convert.DateConverter;
-
-import java.util.Date;
 /**
  *
  * @version : 2015年12月25日
@@ -33,19 +26,15 @@ public class StartModule extends WebModule {
     @Override
     public void loadModule(WebApiBinder apiBinder) throws Throwable {
         //
-        //        apiBinder.installModule(new DataSourceModule());
+        apiBinder.installModule(new DataSourceModule());
         apiBinder.bindType(RenderEngine.class).uniqueName().toInstance(new FreemarkerRender());
-        apiBinder.registerScope("session", new SessionScope());
         //
         // .Webs
-        apiBinder.filter("/*").through(0, new SessionScope());
         apiBinder.filter("/*").through(0, new EncodingFilter());
         apiBinder.filter("/*").through(0, new JumpFilter());
         //
-        DateConverter converter = new DateConverter();
-        converter.setPattern("yyyy-mm-dd");
-        ConverterUtils.register(converter, Date.class);
-        //
-        apiBinder.bindType(UserInfo.class).toScope("session");
+        //        DateConverter converter = new DateConverter();
+        //        converter.setPattern("yyyy-mm-dd");
+        //        ConverterUtils.register(converter, Date.class);
     }
 }

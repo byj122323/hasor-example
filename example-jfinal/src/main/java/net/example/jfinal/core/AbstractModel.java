@@ -23,7 +23,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 /**
  *
- * @version : 2016年08月11日
+ * @version : 2016年11月07日
  * @author 赵永春(zyc@hasor.net)
  */
 public abstract class AbstractModel<M extends AbstractModel<M>> extends Model<M> implements IBean {

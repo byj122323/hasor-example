@@ -9,6 +9,8 @@ import net.hasor.rsf.RsfContext;
 import java.util.List;
 /**
  * 使用 JFinal 方式查询用户列表。
+ * @version : 2016年11月07日
+ * @author 赵永春(zyc@hasor.net)
  */
 public class Index extends Controller {
     @Inject

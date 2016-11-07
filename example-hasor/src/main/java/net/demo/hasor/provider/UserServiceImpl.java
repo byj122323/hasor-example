@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.example.jfinal.provider;
+package net.demo.hasor.provider;
 import net.demo.client.consumer.UserService;
 import net.demo.client.domain.UserDO;
-import net.example.jfinal.services.UserManager;
+import net.demo.hasor.services.UserManager;
 import net.hasor.core.Inject;
-import org.more.util.BeanUtils;
+import org.more.util.ExceptionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 /**
  * 服务实现
@@ -32,14 +31,11 @@ public class UserServiceImpl implements UserService {
     private UserManager userManager;
     @Override
     public List<UserDO> queryUser() {
-        List<net.example.jfinal.domain.UserDO> userDOs = userManager.queryList();
-        List<UserDO> res = new ArrayList<UserDO>();
-        for (net.example.jfinal.domain.UserDO userDO : userDOs) {
-            UserDO extUserDO = new UserDO();
-            BeanUtils.copyProperties(extUserDO, userDO);
-            extUserDO.setCreateTime(userDO.getCreate_time());
-            extUserDO.setModifyTime(userDO.getModify_time());
+        try {
+            List<UserDO> userDOs = userManager.queryList();
+            return userDOs;
+        } catch (Exception e) {
+            throw ExceptionUtils.toRuntimeException(e);
         }
-        return res;
     }
 }

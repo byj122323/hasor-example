@@ -35,7 +35,7 @@ import java.util.Set;
  * @version : 2016年1月3日
  * @author 赵永春(zyc@hasor.net)
  */
-@Render({"html", "htm"})
+@Render({ "html", "htm" })
 public class FreemarkerRender implements RenderEngine {
     protected Configuration configuration;
     @Override

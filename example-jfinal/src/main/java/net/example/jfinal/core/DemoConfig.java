@@ -27,6 +27,8 @@ import java.util.Arrays;
 import java.util.List;
 /**
  * JFinal API 引导式配置（Hasor系列框架全面深度整合）
+ * @version : 2016年11月07日
+ * @author 赵永春(zyc@hasor.net)
  */
 public class DemoConfig extends JFinalConfig implements LifeModule, RsfPlugin {
     private C3p0Plugin getC3p0Plugin() {

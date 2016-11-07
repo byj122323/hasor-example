@@ -15,7 +15,7 @@
  */
 package net.demo.hasor.web.valids;
 import net.demo.hasor.daos.UserDao;
-import net.demo.hasor.domain.UserInfo;
+import net.demo.hasor.domain.UserDTO;
 import net.demo.hasor.web.forms.LoginForm;
 import net.hasor.core.Inject;
 import net.hasor.restful.ValidErrors;
@@ -37,7 +37,7 @@ public class DataBaseValidation implements Validation<LoginForm> {
         //
         String account = dataForm.getAccount();
         String password = dataForm.getPassword();
-        UserInfo userInfo = userDao.queryUserInfoByAccount(account);
+        UserDTO userInfo = userDao.queryUserInfoByAccount(account);
         if (userInfo == null) {
             errors.addError("login", "登陆失败,不存在的帐号。");
             return;

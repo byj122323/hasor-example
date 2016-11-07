@@ -13,37 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.manager;
-import net.demo.hasor.core.Service;
+package net.demo.hasor.services;
 import net.hasor.core.Inject;
 import net.hasor.core.InjectSettings;
 import net.hasor.core.Singleton;
 
 import javax.servlet.ServletContext;
 /**
- *
- * @version : 2016年1月10日
+ * Hasor 定义的环境配置Bean
+ * @version : 2016年11月07日
  * @author 赵永春(zyc@hasor.net)
  */
 @Singleton
-@Service("env")
 public class EnvironmentConfig {
-    @InjectSettings("appExample.curentVersion")
-    private String         curentVersion;
-    @InjectSettings("appExample.envType")
+    //注入环境变量： env.config
+    @InjectSettings("${envType}")
     private String         envType;
-    @InjectSettings("appExample.hostName")
-    private String         hostName;
     @Inject
     private ServletContext servletContext;
     //
-    public String getCurentVersion() {
-        return curentVersion;
-    }
+    //
     public String getEnvType() {
         return envType;
     }
-    public String getHostPath() {
-        return hostName + this.servletContext.getContextPath();
+    public ServletContext getServletContext() {
+        return servletContext;
     }
 }

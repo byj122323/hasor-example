@@ -26,7 +26,7 @@ import java.sql.SQLException;
 import java.util.Date;
 /**
  * Hasor 方式新增用户
- * @version : 2016年1月1日
+ * @version : 2016年11月07日
  * @author 赵永春(zyc@hasor.net)
  */
 @MappingTo("/addUser.do")
