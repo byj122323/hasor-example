@@ -1,4 +1,4 @@
-package net.demo.hasor.jfinal;
+package net.example.jfinal.core;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
 import com.jfinal.kit.PropKit;
@@ -6,10 +6,10 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import net.demo.client.consumer.EchoService;
 import net.demo.client.consumer.MessageService;
-import net.demo.hasor.domain.UserDO;
-import net.demo.hasor.provider.EchoServiceImpl;
-import net.demo.hasor.provider.MessageServiceImpl;
-import net.demo.hasor.web.IndexController;
+import net.example.jfinal.domain.UserDO;
+import net.example.jfinal.provider.EchoServiceImpl;
+import net.example.jfinal.provider.MessageServiceImpl;
+import net.example.jfinal.web.Index;
 import net.hasor.core.*;
 import net.hasor.db.jdbc.core.JdbcTemplate;
 import net.hasor.plugins.jfinal.HasorDataSourceProxy;
@@ -42,7 +42,7 @@ public class DemoConfig extends JFinalConfig implements LifeModule, RsfPlugin {
     /** JFinal 配置路由 */
     public void configRoute(Routes me) {
         //
-        me.add("/jfinal", IndexController.class);
+        me.add("/", Index.class);
     }
     /** JFinal 配置插件 */
     public void configPlugin(Plugins me) {

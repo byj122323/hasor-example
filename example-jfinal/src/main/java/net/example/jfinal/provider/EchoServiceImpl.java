@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.services;
-import net.hasor.core.Singleton;
+package net.example.jfinal.provider;
+import net.demo.client.consumer.EchoService;
 /**
- *
- * @version : 2016年1月10日
+ * 服务实现
+ * @version : 2015年11月27日
  * @author 赵永春(zyc@hasor.net)
  */
-@Singleton
-public class UserManager {
-    //    public UserInfo getUserById(long userId) {
-    //        return new UserInfo();
-    //    }
+public class EchoServiceImpl implements EchoService {
+    @Override
+    public String sayHello(String echo) throws InterruptedException {
+        Thread.sleep(100);
+        System.out.println("server : " + echo);
+        return "you say " + echo;
+    }
 }

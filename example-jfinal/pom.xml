@@ -36,6 +36,7 @@
         </plugins>
     </build>
 
+    <!-- 引用开发测试版本的 Hasor 使用，正式版本不需要引用 Maven 快照仓库 -->
     <repositories>
         <repository>
             <id>snapshots</id>
@@ -48,24 +49,26 @@
 
     <!-- 引用依赖 -->
     <dependencies>
-        <!-- Hasor -->
-        <dependency>
-            <groupId>net.hasor</groupId>
-            <artifactId>hasor-core</artifactId>
-            <version>2.5.1-SNAPSHOT</version>
-        </dependency>
-        <!-- RSF (选配) -->
-        <dependency>
-            <groupId>net.hasor</groupId>
-            <artifactId>hasor-rsf</artifactId>
-            <version>1.1.0-SNAPSHOT</version>
-        </dependency>
         <!-- JFinal -->
         <dependency>
             <groupId>com.jfinal</groupId>
             <artifactId>jfinal</artifactId>
             <version>2.2</version>
         </dependency>
+        <!-- Hasor -->
+        <dependency>
+            <groupId>net.hasor</groupId>
+            <artifactId>hasor-core</artifactId>
+            <version>2.5.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- RSF (选配) -->
+        <dependency>
+            <groupId>net.hasor</groupId>
+            <artifactId>hasor-rsf</artifactId>
+            <version>1.1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- RPC 例子接口定义 -->
         <dependency>
             <groupId>net.hasor</groupId>
             <artifactId>example-client</artifactId>

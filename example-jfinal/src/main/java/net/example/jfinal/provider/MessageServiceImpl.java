@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.provider;
+package net.example.jfinal.provider;
 import net.demo.client.consumer.MessageService;
 import net.hasor.rsf.RsfResult;
 /**
