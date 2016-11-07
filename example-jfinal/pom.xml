@@ -71,7 +71,7 @@
         <!-- RPC 例子接口定义 -->
         <dependency>
             <groupId>net.hasor</groupId>
-            <artifactId>example-client</artifactId>
+            <artifactId>rsf-client</artifactId>
             <version>1.0.0</version>
         </dependency>
 

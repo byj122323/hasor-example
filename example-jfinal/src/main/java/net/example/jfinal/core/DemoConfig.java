@@ -6,9 +6,11 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import net.demo.client.consumer.EchoService;
 import net.demo.client.consumer.MessageService;
+import net.demo.client.consumer.UserService;
 import net.example.jfinal.domain.UserDO;
 import net.example.jfinal.provider.EchoServiceImpl;
 import net.example.jfinal.provider.MessageServiceImpl;
+import net.example.jfinal.provider.UserServiceImpl;
 import net.example.jfinal.web.Index;
 import net.hasor.core.*;
 import net.hasor.db.jdbc.core.JdbcTemplate;
@@ -83,13 +85,19 @@ public class DemoConfig extends JFinalConfig implements LifeModule, RsfPlugin {
     public void loadModule(RsfApiBinder apiBinder) throws Throwable {   // <- （可选）RSF 分布式服务框架的启动过程。
         // - 分布式服务（服务提供者）
         //
-        //  EchoService 接口
+        //  EchoService 接口(方式1)
         apiBinder.rsfService(EchoService.class)//
                 .toInfo(apiBinder.bindType(EchoService.class).to(EchoServiceImpl.class).toInfo())//
                 .register();
-        //  MessageService 接口
+        //
+        //  MessageService 接口(方式2)
         BindInfo<MessageService> bindInfo = apiBinder.bindType(MessageService.class).to(MessageServiceImpl.class).toInfo();
         apiBinder.rsfService(MessageService.class).toInfo(bindInfo).register();
+        //
+        //  UserService 接口
+        apiBinder.rsfService(UserService.class)//
+                .toInfo(apiBinder.bindType(UserService.class).to(UserServiceImpl.class).toInfo())//
+                .register();
     }
     @Override
     public void onStart(AppContext appContext) throws Throwable {       // <- （可选）Hasor 的启动启动过程。

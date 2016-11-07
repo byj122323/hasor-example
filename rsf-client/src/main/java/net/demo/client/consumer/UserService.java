@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.services;
+package net.demo.client.consumer;
+import net.demo.client.domain.UserDO;
+
+import java.util.List;
 /**
- * 服务实现
+ * 消息接口
  * @version : 2015年11月27日
  * @author 赵永春(zyc@hasor.net)
  */
-public class EchoServiceImpl implements EchoService {
-    @Override
-    public String sayHello(String echo) throws InterruptedException {
-        Thread.sleep(100);
-        System.out.println("server : " + echo);
-        return "you say " + echo;
-    }
+public interface UserService {
+    public List<UserDO> queryUser();
 }

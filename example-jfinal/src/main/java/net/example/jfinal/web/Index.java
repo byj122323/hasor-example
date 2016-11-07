@@ -4,12 +4,15 @@ import net.example.jfinal.domain.UserDO;
 import net.example.jfinal.services.EnvironmentConfig;
 import net.example.jfinal.services.UserManager;
 import net.hasor.core.Inject;
+import net.hasor.rsf.RsfContext;
 
 import java.util.List;
 /**
  * 使用 JFinal 方式查询用户列表。
  */
 public class Index extends Controller {
+    @Inject
+    private RsfContext        rsfContext;
     @Inject
     private EnvironmentConfig environmentConfig;
     @Inject

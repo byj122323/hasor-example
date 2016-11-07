@@ -12,7 +12,8 @@
     <name>example-root</name>
 
     <modules>
-        <module>example-client</module>
+        <module>rsf-client</module>
+        <module>rsf-consumer</module>
         <module>example-hasor</module>
         <module>example-spring</module>
         <module>example-jfinal</module>
