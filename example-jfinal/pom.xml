@@ -59,14 +59,13 @@
         <dependency>
             <groupId>net.hasor</groupId>
             <artifactId>hasor-core</artifactId>
-            <version>2.5.1-SNAPSHOT</version>
+            <version>2.5.1</version>
         </dependency>
-
         <!-- RSF (选配) -->
         <dependency>
             <groupId>net.hasor</groupId>
             <artifactId>hasor-rsf</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>1.0.1</version>
         </dependency>
         <!-- RPC 例子接口定义 -->
         <dependency>
