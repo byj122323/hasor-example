@@ -4,7 +4,6 @@ import net.demo.client.consumer.MessageService;
 import net.hasor.core.AppContext;
 import net.hasor.core.Hasor;
 import net.hasor.rsf.RsfApiBinder;
-import net.hasor.rsf.RsfClient;
 import net.hasor.rsf.RsfModule;
 import net.hasor.rsf.RsfResult;
 /**
@@ -17,15 +16,19 @@ public class CustomerClient {
         //Client
         AppContext clientContext = Hasor.createAppContext("customer-config-center.xml", new RsfModule() {
             public void loadModule(RsfApiBinder apiBinder) throws Throwable {
-                apiBinder.rsfService(EchoService.class).register();
-                apiBinder.rsfService(MessageService.class).register();
+                apiBinder.bindType(EchoService.class).toProvider(apiBinder.converToProvider(//
+                        apiBinder.rsfService(EchoService.class).register()//
+                ));
+                //
+                apiBinder.bindType(MessageService.class).toProvider(apiBinder.converToProvider(//
+                        apiBinder.rsfService(MessageService.class).register()//
+                ));
             }
         });
         System.out.println("server start.");
         //
         //Client -> Server
-        RsfClient client = clientContext.getInstance(RsfClient.class);
-        EchoService echoService = client.wrapper(EchoService.class);
+        EchoService echoService = clientContext.getInstance(EchoService.class);
         for (int i = 0; i < 2080; i++) {
             Thread.sleep(500);
             try {
@@ -36,7 +39,7 @@ public class CustomerClient {
             }
         }
         //
-        MessageService messageService = client.wrapper(MessageService.class);
+        MessageService messageService = clientContext.getInstance(MessageService.class);
         for (int i = 0; i < 2080; i++) {
             try {
                 RsfResult res = messageService.sayHello("Hello Word");//客户端会瞬间返回,服务端执行一个消息需要 500毫秒。

@@ -54,9 +54,7 @@ public class UserManager {
     /** 添加用户 */
     @Transactional(propagation = REQUIRED)
     public void addUser(UserDTO userDO) throws SQLException {
-        UserDO dataUser = new UserDO();
-        BeanUtils.copyProperties(dataUser, userDO);
-        boolean save = dataUser.setupAll().save();
+        boolean save = this.userDao.insertUser(userDO);
         if (!save) {
             throw new SQLException("保存失败。");
         }

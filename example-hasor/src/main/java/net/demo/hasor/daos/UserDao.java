@@ -22,6 +22,10 @@ public class UserDao {
     //
     //
     //
+    public boolean insertUser(UserDTO userDO) {
+        //
+        return false;
+    }
     public UserDTO queryUserInfoByAccount(long userID) {
         if (userID > 1000) {
             return new UserDTO();
