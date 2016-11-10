@@ -7,5 +7,6 @@ hasor-example 工程说明
     3. example-spring   Spring 中使用 Hasor 和 RSF。
 
     4. rsf-client   远程接口定义。
-    5. rsf-consumer 远程接口RPC。
-    6. rsf-center   启动注册中心。
+    5. rsf-center   启动注册中心。
+    6. rsf-consumer 单纯的服务消费者
+    7. rsf-provider 单纯的服务提供者

@@ -14,7 +14,7 @@ import net.hasor.rsf.RsfResult;
 public class CustomerClient {
     public static void main(String[] args) throws Throwable {
         //Client
-        AppContext clientContext = Hasor.createAppContext("customer-config-center.xml", new RsfModule() {
+        AppContext clientContext = Hasor.createAppContext("customer-config.xml", new RsfModule() {
             public void loadModule(RsfApiBinder apiBinder) throws Throwable {
                 apiBinder.bindType(EchoService.class).toProvider(apiBinder.converToProvider(//
                         apiBinder.rsfService(EchoService.class).register()//

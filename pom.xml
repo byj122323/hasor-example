@@ -14,6 +14,7 @@
     <modules>
         <module>rsf-client</module>
         <module>rsf-consumer</module>
+        <module>rsf-provider</module>
         <module>example-hasor</module>
         <module>example-spring</module>
         <module>example-jfinal</module>

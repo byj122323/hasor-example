@@ -3,7 +3,7 @@
 
     <hasor.environmentVar>
         <!-- 注册中心 -->
-        <RSF_CENTER_SERVERS>rsf://127.0.0.1:2180</RSF_CENTER_SERVERS>
+        <RSF_CENTER_SERVERS>rsf://121.42.145.108:2180</RSF_CENTER_SERVERS>
 
         <!-- 错开端口，防止冲突 -->
         <RSF_SERVICE_PORT>2160</RSF_SERVICE_PORT>
