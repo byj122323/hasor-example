@@ -18,8 +18,8 @@ import net.demo.hasor.daos.UserDao;
 import net.demo.hasor.domain.UserDTO;
 import net.demo.hasor.web.forms.LoginForm4Scene;
 import net.hasor.core.Inject;
-import net.hasor.restful.ValidErrors;
-import net.hasor.restful.Validation;
+import net.hasor.web.valid.ValidErrors;
+import net.hasor.web.valid.Validation;
 import org.more.util.StringUtils;
 /**
  *

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 package net.demo.hasor.web.forms;
-import net.hasor.restful.api.ReqParam;
+import net.hasor.web.annotation.ReqParam;
 /**
  * @version : 2016年1月10日
  * @author 赵永春(zyc@hasor.net)

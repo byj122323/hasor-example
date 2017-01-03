@@ -15,8 +15,8 @@
  */
 package net.demo.hasor.web.actions;
 import net.demo.hasor.domain.UserDTO;
-import net.hasor.restful.RenderData;
-import net.hasor.restful.api.MappingTo;
+import net.hasor.web.Invoker;
+import net.hasor.web.annotation.MappingTo;
 /**
  *
  * @version : 2016年1月1日
@@ -24,7 +24,7 @@ import net.hasor.restful.api.MappingTo;
  */
 @MappingTo("/getUserInfo.json")
 public class GetUserInfo {
-    public UserDTO execute(RenderData data) {
+    public UserDTO execute(Invoker data) {
         return new UserDTO();
     }
 }

@@ -17,9 +17,9 @@ package net.example.jfinal.web;
 import net.example.jfinal.domain.UserDO;
 import net.example.jfinal.services.UserManager;
 import net.hasor.core.Inject;
-import net.hasor.restful.RenderData;
-import net.hasor.restful.api.MappingTo;
-import net.hasor.restful.api.Params;
+import net.hasor.web.Invoker;
+import net.hasor.web.annotation.MappingTo;
+import net.hasor.web.annotation.Params;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -34,7 +34,7 @@ public class AddUser {
     @Inject
     private UserManager userManager;
     //
-    public void execute(@Params() UserDO userParam, RenderData data) throws SQLException, IOException {
+    public void execute(@Params() UserDO userParam, Invoker data) throws SQLException, IOException {
         //
         userParam.setModify_time(new Date());
         userParam.setCreate_time(new Date());

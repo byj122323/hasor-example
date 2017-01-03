@@ -15,10 +15,11 @@
  */
 package net.demo.hasor.web.actions.scene;
 import net.demo.hasor.web.forms.LoginForm4Scene;
-import net.hasor.restful.RenderData;
-import net.hasor.restful.api.MappingTo;
-import net.hasor.restful.api.Params;
-import net.hasor.restful.api.Valid;
+import net.hasor.web.annotation.MappingTo;
+import net.hasor.web.annotation.Params;
+import net.hasor.web.annotation.Valid;
+import net.hasor.web.render.RenderInvoker;
+import net.hasor.web.valid.ValidInvoker;
 /**
  *
  * @version : 2016年1月1日
@@ -26,12 +27,12 @@ import net.hasor.restful.api.Valid;
  */
 @MappingTo("/scene/login.do")
 public class Login4Scene {
-    public void execute(@Valid("login") @Params LoginForm4Scene loginForm, RenderData data) {
-        if (data.isValid()) {
-            data.renderTo("htm", "/userInfo.htm");
+    public void execute(@Valid("login") @Params LoginForm4Scene loginForm, ValidInvoker valid, RenderInvoker render) {
+        if (valid.isValid()) {
+            render.renderTo("htm", "/userInfo.htm");
         } else {
-            data.put("loginForm", loginForm);
-            data.renderTo("htm", "/scene.htm");//使用 htm 引擎渲染页面。
+            render.put("loginForm", loginForm);
+            render.renderTo("htm", "/scene.htm");//使用 htm 引擎渲染页面。
         }
     }
 }

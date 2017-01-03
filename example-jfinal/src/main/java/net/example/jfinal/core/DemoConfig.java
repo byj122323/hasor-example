@@ -19,8 +19,6 @@ import net.hasor.plugins.jfinal.HasorHandler;
 import net.hasor.plugins.jfinal.HasorInterceptor;
 import net.hasor.plugins.jfinal.HasorPlugin;
 import net.hasor.rsf.RsfApiBinder;
-import net.hasor.rsf.RsfModule;
-import net.hasor.rsf.RsfPlugin;
 import net.hasor.web.WebApiBinder;
 
 import java.util.Arrays;
@@ -30,7 +28,7 @@ import java.util.List;
  * @version : 2016年11月07日
  * @author 赵永春(zyc@hasor.net)
  */
-public class DemoConfig extends JFinalConfig implements LifeModule, RsfPlugin {
+public class DemoConfig extends JFinalConfig implements LifeModule {
     private C3p0Plugin getC3p0Plugin() {
         String jdbcUrl = PropKit.get("jdbc.url").trim();
         String user = PropKit.get("jdbc.user").trim();
@@ -59,8 +57,7 @@ public class DemoConfig extends JFinalConfig implements LifeModule, RsfPlugin {
         // .Hasor框架集成
         List<Module> hasorPlugins = Arrays.asList(//
                 dbProxy,// .配置代理数据源到 Hasor
-                this,   // .Module 或 LifeModule接口
-                RsfModule.toModule(this) // .RsfPlugin 转换为 Module
+                this   // .Module 或 LifeModule接口
         );
         me.add(new HasorPlugin(JFinal.me(), hasorPlugins));            // <- （必选）Hasor 框架的启动和销毁
         //
@@ -82,8 +79,11 @@ public class DemoConfig extends JFinalConfig implements LifeModule, RsfPlugin {
     /** Hasor 集成之后的启动入口 */
     public void loadModule(ApiBinder apiBinder) throws Throwable {      // <- （可选）Hasor 的启动初始化。
         WebApiBinder webApiBinder = (WebApiBinder) apiBinder;
+        //
+        if (apiBinder instanceof RsfApiBinder) {
+            this.loadModule((RsfApiBinder) apiBinder);
+        }
     }
-    @Override
     public void loadModule(RsfApiBinder apiBinder) throws Throwable {   // <- （可选）RSF 分布式服务框架的启动过程。
         // - 分布式服务（服务提供者）
         //

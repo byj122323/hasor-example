@@ -1,8 +1,8 @@
 package net.demo.hasor.web.actions.restful;
 import net.demo.hasor.web.forms.UserForm;
-import net.hasor.restful.api.MappingTo;
-import net.hasor.restful.api.Params;
-import net.hasor.restful.api.Post;
+import net.hasor.web.annotation.MappingTo;
+import net.hasor.web.annotation.Params;
+import net.hasor.web.annotation.Post;
 /**
  * Created by zhaoyongchun on 16/10/2.
  */

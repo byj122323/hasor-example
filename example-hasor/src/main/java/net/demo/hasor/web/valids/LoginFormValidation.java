@@ -15,8 +15,8 @@
  */
 package net.demo.hasor.web.valids;
 import net.demo.hasor.web.forms.LoginForm;
-import net.hasor.restful.ValidErrors;
-import net.hasor.restful.Validation;
+import net.hasor.web.valid.ValidErrors;
+import net.hasor.web.valid.Validation;
 import org.more.util.StringUtils;
 /**
  *

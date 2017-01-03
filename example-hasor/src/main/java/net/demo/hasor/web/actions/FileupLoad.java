@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 package net.demo.hasor.web.actions;
-import net.hasor.restful.WebController;
-import net.hasor.restful.api.MappingTo;
 import net.hasor.web.FileItem;
+import net.hasor.web.WebController;
+import net.hasor.web.annotation.MappingTo;
 
 import java.io.File;
 import java.io.IOException;

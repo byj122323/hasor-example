@@ -15,10 +15,11 @@
  */
 package net.demo.hasor.web.actions;
 import net.demo.hasor.web.forms.LoginForm;
-import net.hasor.restful.RenderData;
-import net.hasor.restful.api.MappingTo;
-import net.hasor.restful.api.Params;
-import net.hasor.restful.api.Valid;
+import net.hasor.web.annotation.MappingTo;
+import net.hasor.web.annotation.Params;
+import net.hasor.web.annotation.Valid;
+import net.hasor.web.render.RenderInvoker;
+import net.hasor.web.valid.ValidInvoker;
 /**
  *
  * @version : 2016年1月1日
@@ -26,12 +27,12 @@ import net.hasor.restful.api.Valid;
  */
 @MappingTo("/login.htm")
 public class Longin {
-    public void execute(@Valid() @Params LoginForm loginForm, RenderData data) {
-        if (data.isValid()) {
-            data.renderTo("/userInfo.htm");
+    public void execute(@Valid() @Params LoginForm loginForm, ValidInvoker valid, RenderInvoker render) {
+        if (valid.isValid()) {
+            render.renderTo("/userInfo.htm");
         } else {
-            data.put("loginForm", loginForm);
-            data.renderTo("/login.htm");//使用 htm 引擎渲染页面。
+            render.put("loginForm", loginForm);
+            render.renderTo("/login.htm");//使用 htm 引擎渲染页面。
         }
     }
 }

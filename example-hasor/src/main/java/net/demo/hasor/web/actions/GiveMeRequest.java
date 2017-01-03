@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 package net.demo.hasor.web.actions;
-import net.hasor.restful.api.MappingTo;
+import net.hasor.web.annotation.MappingTo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

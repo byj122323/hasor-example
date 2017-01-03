@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 package net.demo.hasor.web.actions;
-import net.hasor.restful.api.MappingTo;
-import net.hasor.restful.api.ReqParam;
+import net.hasor.web.annotation.MappingTo;
+import net.hasor.web.annotation.ReqParam;
 
 import java.util.Date;
 /**

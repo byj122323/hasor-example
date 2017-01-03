@@ -18,13 +18,14 @@ import freemarker.cache.FileTemplateLoader;
 import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import net.hasor.restful.Render;
-import net.hasor.restful.RenderData;
-import net.hasor.restful.RenderEngine;
-import net.hasor.web.WebAppContext;
+import net.hasor.core.AppContext;
+import net.hasor.web.annotation.Render;
+import net.hasor.web.render.RenderEngine;
+import net.hasor.web.render.RenderInvoker;
 import org.more.util.StringEscapeUtils;
 import org.more.util.StringUtils;
 
+import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
@@ -39,8 +40,9 @@ import java.util.Set;
 public class FreemarkerRender implements RenderEngine {
     protected Configuration configuration;
     @Override
-    public void initEngine(WebAppContext appContext) throws Throwable {
-        String realPath = appContext.getEnvironment().getServletContext().getRealPath("/");
+    public void initEngine(AppContext appContext) throws Throwable {
+        ServletContext servletContext = appContext.getInstance(ServletContext.class);
+        String realPath = servletContext.getRealPath("/");
         TemplateLoader templateLoader = new FileTemplateLoader(new File(realPath), true);
         this.configuration = new Configuration(Configuration.VERSION_2_3_22);
         this.configuration.setTemplateLoader(templateLoader);
@@ -66,10 +68,10 @@ public class FreemarkerRender implements RenderEngine {
         }
         //
         // - 环境变量
-        this.configuration.setSharedVariable("ctx_path", appContext.getServletContext().getContextPath());
+        this.configuration.setSharedVariable("ctx_path", servletContext.getContextPath());
     }
     @Override
-    public void process(RenderData renderData, Writer writer) throws Throwable {
+    public void process(RenderInvoker renderData, Writer writer) throws Throwable {
         Template temp = this.configuration.getTemplate(renderData.renderTo());
         //
         HashMap<String, Object> data = new HashMap<String, Object>();

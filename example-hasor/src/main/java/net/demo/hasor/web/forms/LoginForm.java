@@ -16,14 +16,14 @@
 package net.demo.hasor.web.forms;
 import net.demo.hasor.web.valids.DataBaseValidation;
 import net.demo.hasor.web.valids.LoginFormValidation;
-import net.hasor.restful.api.ReqParam;
-import net.hasor.restful.api.ValidBy;
+import net.hasor.web.annotation.ReqParam;
+import net.hasor.web.annotation.ValidBy;
 /**
  * 登录表单,指定 LoginFormValidation 类为它的验证器。
  * @version : 2016年1月10日
  * @author 赵永春(zyc@hasor.net)
  */
-@ValidBy({LoginFormValidation.class, DataBaseValidation.class})
+@ValidBy({ LoginFormValidation.class, DataBaseValidation.class })
 public class LoginForm {
     @ReqParam("email")
     private String email;

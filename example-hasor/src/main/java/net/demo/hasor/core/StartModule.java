@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 package net.demo.hasor.core;
-import net.hasor.restful.RenderEngine;
 import net.hasor.web.WebApiBinder;
 import net.hasor.web.WebModule;
+import net.hasor.web.render.RenderEngine;
 /**
  *
  * @version : 2015年12月25日
