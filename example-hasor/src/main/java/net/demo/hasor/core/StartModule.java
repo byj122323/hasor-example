@@ -26,12 +26,13 @@ public class StartModule extends WebModule {
     @Override
     public void loadModule(WebApiBinder apiBinder) throws Throwable {
         //
+        apiBinder.setEncodingCharacter("utf-8", "utf-8");
+        //
         apiBinder.installModule(new DataSourceModule());
         apiBinder.bindType(RenderEngine.class).uniqueName().toInstance(new FreemarkerRender());
         //
         // .Webs
-        apiBinder.filter("/*").through(0, new EncodingFilter());
-        apiBinder.filter("/*").through(0, new JumpFilter());
+        apiBinder.jeeFilter("/*").through(0, new JumpFilter());
         //
         //        DateConverter converter = new DateConverter();
         //        converter.setPattern("yyyy-mm-dd");
