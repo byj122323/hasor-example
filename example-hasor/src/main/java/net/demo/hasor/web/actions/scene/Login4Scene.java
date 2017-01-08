@@ -17,7 +17,7 @@ package net.demo.hasor.web.actions.scene;
 import net.demo.hasor.web.forms.LoginForm4Scene;
 import net.hasor.web.annotation.MappingTo;
 import net.hasor.web.annotation.Params;
-import net.hasor.web.annotation.Valid;
+import net.hasor.web.valid.Valid;
 import net.hasor.web.render.RenderInvoker;
 import net.hasor.web.valid.ValidInvoker;
 /**

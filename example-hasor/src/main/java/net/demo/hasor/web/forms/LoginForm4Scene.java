@@ -16,7 +16,7 @@
 package net.demo.hasor.web.forms;
 import net.demo.hasor.web.valids.scene.LoginFormValidation4Scene;
 import net.hasor.web.annotation.ReqParam;
-import net.hasor.web.annotation.ValidBy;
+import net.hasor.web.valid.ValidBy;
 /**
  * 登录表单,指定 LoginFormValidation 类为它的验证器。
  * @version : 2016年1月10日
