@@ -90,6 +90,6 @@ public class DataSourceModule implements LifeModule {
     }
     @Override
     public void onStop(AppContext appContext) throws Throwable {
-        // TODO Auto-generated method stub
+        //
     }
 }
