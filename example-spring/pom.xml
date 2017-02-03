@@ -40,10 +40,16 @@
             <groupId>net.hasor</groupId>
             <artifactId>hasor-core</artifactId>
         </dependency>
-        <!-- RSF -->
+        <!-- RSF (选配) -->
         <dependency>
             <groupId>net.hasor</groupId>
             <artifactId>hasor-rsf</artifactId>
+        </dependency>
+        <!-- RPC 例子接口定义 -->
+        <dependency>
+            <groupId>net.hasor</groupId>
+            <artifactId>rsf-client</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <!-- freemarker -->
