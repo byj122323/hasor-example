@@ -20,7 +20,7 @@ import net.demo.hasor.web.forms.LoginForm;
 import net.hasor.core.Inject;
 import net.hasor.web.valid.ValidErrors;
 import net.hasor.web.valid.Validation;
-import org.more.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 /**
  *
  * @version : 2016年1月1日

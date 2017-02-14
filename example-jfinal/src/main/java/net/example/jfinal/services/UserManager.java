@@ -18,7 +18,7 @@ import net.example.jfinal.domain.UserDO;
 import net.hasor.core.Inject;
 import net.hasor.core.Singleton;
 import net.hasor.db.Transactional;
-import org.more.util.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -45,10 +45,15 @@ public class UserManager {
     /** JFinal 方式，添加用户，使用 Hasor 提供的数据库事务 */
     @Transactional(propagation = REQUIRED)
     public void addUser(UserDO userDO) throws SQLException {
-        UserDO dataUser = new UserDO();
-        BeanUtils.copyProperties(dataUser, userDO);
-        boolean save = dataUser.setupAll().save();
-        if (!save) {
+        try {
+            UserDO dataUser = new UserDO();
+            BeanUtils.copyProperties(dataUser, userDO);
+            boolean save = dataUser.setupAll().save();
+            if (!save)
+                throw new SQLException("保存失败。");
+        } catch (Exception e) {
+            if (e instanceof SQLException)
+                throw (SQLException) e;
             throw new SQLException("保存失败。");
         }
     }

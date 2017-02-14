@@ -23,5 +23,5 @@ import java.util.List;
  * @author 赵永春(zyc@hasor.net)
  */
 public interface UserService {
-    public List<UserDO> queryUser();
+    public List<UserDO> queryUser() throws Exception;
 }

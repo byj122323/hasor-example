@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 package net.demo.hasor.web.actions;
+import net.hasor.rsf.json.JSON;
 import net.hasor.web.annotation.MappingTo;
 import net.hasor.web.annotation.ReqParam;
-import org.more.bizcommon.json.JSON;
 /**
  *
  * @version : 2016年1月1日

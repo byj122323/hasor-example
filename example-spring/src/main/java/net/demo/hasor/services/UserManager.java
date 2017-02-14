@@ -20,7 +20,7 @@ import net.demo.hasor.domain.UserDTO;
 import net.hasor.core.Inject;
 import net.hasor.core.Singleton;
 import net.hasor.db.Transactional;
-import org.more.util.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class UserManager {
     private UserDao userDao;
     //
     /** 查询列表 */
-    public List<UserDO> queryList() throws SQLException {
+    public List<UserDO> queryList() throws Exception {
         List<UserDTO> userDOs = userDao.queryList();
         List<UserDO> userList = new ArrayList<UserDO>();
         for (UserDTO dto : userDOs) {

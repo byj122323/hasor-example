@@ -22,8 +22,8 @@ import net.hasor.core.AppContext;
 import net.hasor.web.render.Render;
 import net.hasor.web.render.RenderEngine;
 import net.hasor.web.render.RenderInvoker;
-import org.more.util.StringEscapeUtils;
-import org.more.util.StringUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.ServletContext;
 import java.io.File;

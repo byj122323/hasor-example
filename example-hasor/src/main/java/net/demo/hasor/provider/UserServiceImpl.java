@@ -18,7 +18,7 @@ import net.demo.client.consumer.UserService;
 import net.demo.client.domain.UserDO;
 import net.demo.hasor.services.UserManager;
 import net.hasor.core.Inject;
-import org.more.util.ExceptionUtils;
+import net.hasor.core.utils.ExceptionUtils;
 
 import java.util.List;
 /**

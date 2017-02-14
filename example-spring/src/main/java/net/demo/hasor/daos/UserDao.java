@@ -2,7 +2,7 @@ package net.demo.hasor.daos;
 import net.demo.hasor.domain.UserDTO;
 import net.hasor.core.Inject;
 import net.hasor.db.jdbc.core.JdbcTemplate;
-import org.more.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.sql.SQLException;
 import java.util.List;

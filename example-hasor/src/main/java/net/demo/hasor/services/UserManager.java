@@ -20,7 +20,7 @@ import net.demo.hasor.domain.UserDTO;
 import net.hasor.core.Inject;
 import net.hasor.core.Singleton;
 import net.hasor.db.Transactional;
-import org.more.util.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -39,16 +39,20 @@ public class UserManager {
     //
     /** 查询列表 */
     public List<UserDO> queryList() throws SQLException {
-        List<UserDTO> userDOs = userDao.queryList();
-        List<UserDO> userList = new ArrayList<UserDO>();
-        for (UserDTO dto : userDOs) {
-            UserDO userDO = new UserDO();
-            BeanUtils.copyProperties(userDO, dto);
-            userDO.setCreateTime(dto.getCreate_time());
-            userDO.setModifyTime(dto.getModify_time());
-            userList.add(userDO);
+        try {
+            List<UserDTO> userDOs = userDao.queryList();
+            List<UserDO> userList = new ArrayList<UserDO>();
+            for (UserDTO dto : userDOs) {
+                UserDO userDO = new UserDO();
+                BeanUtils.copyProperties(userDO, dto);
+                userDO.setCreateTime(dto.getCreate_time());
+                userDO.setModifyTime(dto.getModify_time());
+                userList.add(userDO);
+            }
+            return userList;
+        } catch (Exception e) {
+            throw new SQLException(e);
         }
-        return userList;
     }
     //
     /** 添加用户 */

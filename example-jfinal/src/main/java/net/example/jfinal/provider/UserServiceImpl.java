@@ -18,7 +18,7 @@ import net.demo.client.consumer.UserService;
 import net.demo.client.domain.UserDO;
 import net.example.jfinal.services.UserManager;
 import net.hasor.core.Inject;
-import org.more.util.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     @Inject
     private UserManager userManager;
     @Override
-    public List<UserDO> queryUser() {
+    public List<UserDO> queryUser() throws Exception {
         List<net.example.jfinal.domain.UserDO> userDOs = userManager.queryList();
         List<UserDO> res = new ArrayList<UserDO>();
         for (net.example.jfinal.domain.UserDO userDO : userDOs) {

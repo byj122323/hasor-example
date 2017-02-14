@@ -16,10 +16,11 @@
 package net.example.jfinal.core;
 import com.jfinal.plugin.activerecord.IBean;
 import com.jfinal.plugin.activerecord.Model;
-import org.more.util.BeanUtils;
-import org.more.util.ClassUtils;
+import net.hasor.rsf.utils.BeanUtils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 /**
  *
@@ -32,7 +33,7 @@ public abstract class AbstractModel<M extends AbstractModel<M>> extends Model<M>
     }
     //
     public Model<M> recover() {
-        Class<?> oriType = ClassUtils.getSuperClassGenricType(this.getClass(), 0);
+        Class<?> oriType = getSuperClassGenricType(this.getClass(), 0);
         oriType = (oriType == null) ? this.getClass() : oriType;
         List<Field> allFields = BeanUtils.findALLFields(oriType);
         for (Field field : allFields) {
@@ -52,7 +53,7 @@ public abstract class AbstractModel<M extends AbstractModel<M>> extends Model<M>
     }
     //
     protected Model<M> setup(PersistentFilter filter) {
-        Class<?> oriType = ClassUtils.getSuperClassGenricType(this.getClass(), 0);
+        Class<?> oriType = getSuperClassGenricType(this.getClass(), 0);
         oriType = (oriType == null) ? this.getClass() : oriType;
         List<Field> allFields = BeanUtils.findALLFields(oriType);
         for (Field field : allFields) {
@@ -100,5 +101,22 @@ public abstract class AbstractModel<M extends AbstractModel<M>> extends Model<M>
                 return !(oldValue == null || "".equals(oldValue));
             }
         });
+    }
+    /**获取泛型类型。*/
+    public static Class<?> getSuperClassGenricType(final Class<?> clazz, final int index) {
+        //返回表示此 Class 所表示的实体（类、接口、基本类型或 void）的直接超类的 Type。
+        Type genType = clazz.getGenericSuperclass();
+        if (!(genType instanceof ParameterizedType)) {
+            return Object.class;
+        }
+        //返回表示此类型实际类型参数的 Type 对象的数组。
+        Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
+        if (index >= params.length || index < 0) {
+            return Object.class;
+        }
+        if (!(params[index] instanceof Class)) {
+            return Object.class;
+        }
+        return (Class<?>) params[index];
     }
 }
