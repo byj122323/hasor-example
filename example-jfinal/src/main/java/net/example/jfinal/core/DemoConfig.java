@@ -79,6 +79,7 @@ public class DemoConfig extends JFinalConfig implements LifeModule {
     /** Hasor 集成之后的启动入口 */
     public void loadModule(ApiBinder apiBinder) throws Throwable {      // <- （可选）Hasor 的启动初始化。
         WebApiBinder webApiBinder = (WebApiBinder) apiBinder;
+        webApiBinder.scanMappingTo(); //扫描所有 @MappingTo 注解
         //
         if (apiBinder instanceof RsfApiBinder) {
             this.loadModule((RsfApiBinder) apiBinder);

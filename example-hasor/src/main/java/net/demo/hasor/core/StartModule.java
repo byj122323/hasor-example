@@ -27,6 +27,7 @@ public class StartModule extends WebModule {
     public void loadModule(WebApiBinder apiBinder) throws Throwable {
         //
         apiBinder.setEncodingCharacter("utf-8", "utf-8");
+        apiBinder.scanMappingTo(); //扫描所有 @MappingTo 注解
         //
         apiBinder.installModule(new DataSourceModule());
         apiBinder.bindType(RenderEngine.class).uniqueName().toInstance(new FreemarkerRender());
