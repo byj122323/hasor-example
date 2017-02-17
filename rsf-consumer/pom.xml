@@ -51,6 +51,10 @@
         </dependency>
         <dependency>
             <groupId>net.hasor</groupId>
+            <artifactId>hasor-registry</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.hasor</groupId>
             <artifactId>rsf-client</artifactId>
             <version>1.0.0</version>
         </dependency>

@@ -45,6 +45,11 @@
             <groupId>net.hasor</groupId>
             <artifactId>hasor-rsf</artifactId>
         </dependency>
+        <!-- Center (选配) -->
+        <dependency>
+            <groupId>net.hasor</groupId>
+            <artifactId>hasor-registry</artifactId>
+        </dependency>
         <!-- RPC 例子接口定义 -->
         <dependency>
             <groupId>net.hasor</groupId>
