@@ -1,5 +1,5 @@
-package net.demo.hasor.web.actions.restful;
-import net.demo.hasor.web.forms.UserForm;
+package ttmmpp.actions.restful;
+import ttmmpp.forms.UserForm;
 import net.hasor.web.annotation.MappingTo;
 import net.hasor.web.annotation.Params;
 import net.hasor.web.annotation.Post;

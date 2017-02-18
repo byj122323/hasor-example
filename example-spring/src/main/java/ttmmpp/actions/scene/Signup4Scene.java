@@ -13,19 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.web.actions;
-import net.hasor.web.WebController;
+package ttmmpp.actions.scene;
+import ttmmpp.forms.LoginForm4Scene;
 import net.hasor.web.annotation.MappingTo;
+import net.hasor.web.annotation.Params;
+import net.hasor.web.valid.Valid;
+import net.hasor.web.RenderInvoker;
+import net.hasor.web.valid.ValidInvoker;
 /**
  *
  * @version : 2016年1月1日
  * @author 赵永春(zyc@hasor.net)
  */
-@MappingTo("/action.do")
-public class Action extends WebController {
-    public void execute() {
-        this.getRequest();
-        this.getResponse();
-        //
+@MappingTo("/scene/signup.do")
+public class Signup4Scene {
+    public void execute(@Valid("signup") @Params LoginForm4Scene loginForm,//
+            RenderInvoker render, ValidInvoker valid) {
+        if (valid.isValid()) {
+            render.renderTo("htm", "/userInfo.htm");
+        } else {
+            render.put("signupForm", loginForm);
+            render.renderTo("htm", "/scene.htm");//使用 htm 引擎渲染页面。
+        }
     }
 }

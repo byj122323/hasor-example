@@ -13,24 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.web.valids;
-import net.demo.hasor.web.forms.LoginForm;
-import net.hasor.web.valid.ValidErrors;
-import net.hasor.web.valid.Validation;
-import org.apache.commons.lang3.StringUtils;
+package ttmmpp.actions;
+import ttmmpp.forms.LoginForm;
+import net.hasor.web.annotation.MappingTo;
+import net.hasor.web.annotation.Params;
+import net.hasor.web.valid.Valid;
+import net.hasor.web.RenderInvoker;
+import net.hasor.web.valid.ValidInvoker;
 /**
  *
  * @version : 2016年1月1日
  * @author 赵永春(zyc@hasor.net)
  */
-public class LoginFormValidation implements Validation<LoginForm> {
-    @Override
-    public void doValidation(String validType, LoginForm dataForm, ValidErrors errors) {
-        if (StringUtils.isBlank(dataForm.getAccount())) {
-            errors.addError("account", "帐号为空。");
-        }
-        if (StringUtils.isBlank(dataForm.getPassword())) {
-            errors.addError("password", "密码为空。");
+@MappingTo("/login.htm")
+public class Longin {
+    public void execute(@Valid() @Params LoginForm loginForm, ValidInvoker valid, RenderInvoker render) {
+        if (valid.isValid()) {
+            render.renderTo("/userInfo.htm");
+        } else {
+            render.put("loginForm", loginForm);
+            render.renderTo("/login.htm");//使用 htm 引擎渲染页面。
         }
     }
 }

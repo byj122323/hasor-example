@@ -13,26 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.web.actions.scene;
-import net.demo.hasor.web.forms.LoginForm4Scene;
+package ttmmpp.actions;
+import net.hasor.rsf.json.JSON;
 import net.hasor.web.annotation.MappingTo;
-import net.hasor.web.annotation.Params;
-import net.hasor.web.valid.Valid;
-import net.hasor.web.render.RenderInvoker;
-import net.hasor.web.valid.ValidInvoker;
+import net.hasor.web.annotation.ReqParam;
 /**
  *
  * @version : 2016年1月1日
  * @author 赵永春(zyc@hasor.net)
  */
-@MappingTo("/scene/login.do")
-public class Login4Scene {
-    public void execute(@Valid("login") @Params LoginForm4Scene loginForm, ValidInvoker valid, RenderInvoker render) {
-        if (valid.isValid()) {
-            render.renderTo("htm", "/userInfo.htm");
-        } else {
-            render.put("loginForm", loginForm);
-            render.renderTo("htm", "/scene.htm");//使用 htm 引擎渲染页面。
-        }
+@MappingTo("/arrayParams.htm")
+public class ArrayParams {
+    public void execute(@ReqParam("name") String[] nameArray) {
+        System.out.println("Hello Request ,the name is " + JSON.toString(nameArray));
     }
 }

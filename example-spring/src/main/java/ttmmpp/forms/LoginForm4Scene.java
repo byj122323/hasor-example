@@ -13,13 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.web.forms;
+package ttmmpp.forms;
+import ttmmpp.valids.scene.LoginFormValidation4Scene;
 import net.hasor.web.annotation.ReqParam;
+import net.hasor.web.valid.ValidBy;
 /**
+ * 登录表单,指定 LoginFormValidation 类为它的验证器。
  * @version : 2016年1月10日
  * @author 赵永春(zyc@hasor.net)
  */
-public class UserForm {
+@ValidBy(LoginFormValidation4Scene.class)
+public class LoginForm4Scene {
     @ReqParam("email")
     private String email;
     @ReqParam("account")

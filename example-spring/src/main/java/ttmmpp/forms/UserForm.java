@@ -13,26 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.web.forms;
-import net.demo.hasor.web.valids.DataBaseValidation;
-import net.demo.hasor.web.valids.LoginFormValidation;
+package ttmmpp.forms;
 import net.hasor.web.annotation.ReqParam;
-import net.hasor.web.valid.ValidBy;
 /**
- * 登录表单,指定 LoginFormValidation 类为它的验证器。
  * @version : 2016年1月10日
  * @author 赵永春(zyc@hasor.net)
  */
-@ValidBy({ LoginFormValidation.class, DataBaseValidation.class })
-public class LoginForm {
+public class UserForm {
     @ReqParam("email")
     private String email;
     @ReqParam("account")
     private String account;
     @ReqParam("password")
     private String password;
-    @ReqParam("redirectURI")
-    private String redirectURI;
     //
     //
     public String getEmail() {
@@ -52,11 +45,5 @@ public class LoginForm {
     }
     public void setPassword(String password) {
         this.password = password;
-    }
-    public String getRedirectURI() {
-        return redirectURI;
-    }
-    public void setRedirectURI(String redirectURI) {
-        this.redirectURI = redirectURI;
     }
 }

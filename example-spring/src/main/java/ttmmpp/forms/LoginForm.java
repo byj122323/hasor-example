@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.web.forms;
-import net.demo.hasor.web.valids.scene.LoginFormValidation4Scene;
+package ttmmpp.forms;
+import ttmmpp.valids.DataBaseValidation;
+import ttmmpp.valids.LoginFormValidation;
 import net.hasor.web.annotation.ReqParam;
 import net.hasor.web.valid.ValidBy;
 /**
@@ -22,14 +23,16 @@ import net.hasor.web.valid.ValidBy;
  * @version : 2016年1月10日
  * @author 赵永春(zyc@hasor.net)
  */
-@ValidBy(LoginFormValidation4Scene.class)
-public class LoginForm4Scene {
+@ValidBy({ LoginFormValidation.class, DataBaseValidation.class })
+public class LoginForm {
     @ReqParam("email")
     private String email;
     @ReqParam("account")
     private String account;
     @ReqParam("password")
     private String password;
+    @ReqParam("redirectURI")
+    private String redirectURI;
     //
     //
     public String getEmail() {
@@ -49,5 +52,11 @@ public class LoginForm4Scene {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+    public String getRedirectURI() {
+        return redirectURI;
+    }
+    public void setRedirectURI(String redirectURI) {
+        this.redirectURI = redirectURI;
     }
 }

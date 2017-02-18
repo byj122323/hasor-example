@@ -13,27 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.web.actions.scene;
-import net.demo.hasor.web.forms.LoginForm4Scene;
+package ttmmpp.actions;
+import net.hasor.web.FileItem;
+import net.hasor.web.WebController;
 import net.hasor.web.annotation.MappingTo;
-import net.hasor.web.annotation.Params;
-import net.hasor.web.valid.Valid;
-import net.hasor.web.render.RenderInvoker;
-import net.hasor.web.valid.ValidInvoker;
+
+import java.io.File;
+import java.io.IOException;
 /**
  *
  * @version : 2016年1月1日
  * @author 赵永春(zyc@hasor.net)
  */
-@MappingTo("/scene/signup.do")
-public class Signup4Scene {
-    public void execute(@Valid("signup") @Params LoginForm4Scene loginForm,//
-            RenderInvoker render, ValidInvoker valid) {
-        if (valid.isValid()) {
-            render.renderTo("htm", "/userInfo.htm");
-        } else {
-            render.put("signupForm", loginForm);
-            render.renderTo("htm", "/scene.htm");//使用 htm 引擎渲染页面。
-        }
+@MappingTo("/fileupload.do")
+public class FileupLoad extends WebController {
+    public void execute() throws IOException {
+        //
+        // 方式1: - 使用默认缓存目录
+        FileItem multipart = this.getOneMultipart("upfile");
+        multipart.writeTo(new File(""));
+        multipart.deleteOrSkip();
+        //
+        // 方式2: - 使用自定义缓存目录
+        String cacheDirectory = "...";
+        Integer maxPostSize = 1024 * 1024;
+        FileItem multipart1 = this.getOneMultipart("upfile", cacheDirectory, maxPostSize);
     }
 }

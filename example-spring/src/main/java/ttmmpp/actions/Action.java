@@ -13,18 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.web.actions;
-import net.hasor.rsf.json.JSON;
+package ttmmpp.actions;
+import net.hasor.web.WebController;
 import net.hasor.web.annotation.MappingTo;
-import net.hasor.web.annotation.ReqParam;
 /**
  *
  * @version : 2016年1月1日
  * @author 赵永春(zyc@hasor.net)
  */
-@MappingTo("/arrayParams.htm")
-public class ArrayParams {
-    public void execute(@ReqParam("name") String[] nameArray) {
-        System.out.println("Hello Request ,the name is " + JSON.toString(nameArray));
+@MappingTo("/action.do")
+public class Action extends WebController {
+    public void execute() {
+        this.getRequest();
+        this.getResponse();
+        //
     }
 }

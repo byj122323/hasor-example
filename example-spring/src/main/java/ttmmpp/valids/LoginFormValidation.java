@@ -13,18 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.web.actions;
-import net.demo.hasor.domain.UserDTO;
-import net.hasor.web.Invoker;
-import net.hasor.web.annotation.MappingTo;
+package ttmmpp.valids;
+import ttmmpp.forms.LoginForm;
+import net.hasor.web.valid.ValidErrors;
+import net.hasor.web.valid.Validation;
+import org.apache.commons.lang3.StringUtils;
 /**
  *
  * @version : 2016年1月1日
  * @author 赵永春(zyc@hasor.net)
  */
-@MappingTo("/getUserInfo.json")
-public class GetUserInfo {
-    public UserDTO execute(Invoker data) {
-        return new UserDTO();
+public class LoginFormValidation implements Validation<LoginForm> {
+    @Override
+    public void doValidation(String validType, LoginForm dataForm, ValidErrors errors) {
+        if (StringUtils.isBlank(dataForm.getAccount())) {
+            errors.addError("account", "帐号为空。");
+        }
+        if (StringUtils.isBlank(dataForm.getPassword())) {
+            errors.addError("password", "密码为空。");
+        }
     }
 }

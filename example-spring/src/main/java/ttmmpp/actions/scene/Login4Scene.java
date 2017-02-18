@@ -13,20 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.web.actions;
+package ttmmpp.actions.scene;
+import ttmmpp.forms.LoginForm4Scene;
 import net.hasor.web.annotation.MappingTo;
-import net.hasor.web.annotation.ReqParam;
-
-import java.util.Date;
+import net.hasor.web.annotation.Params;
+import net.hasor.web.valid.Valid;
+import net.hasor.web.RenderInvoker;
+import net.hasor.web.valid.ValidInvoker;
 /**
  *
  * @version : 2016年1月1日
  * @author 赵永春(zyc@hasor.net)
  */
-@MappingTo("/index.htm")
-public class Index {
-    public void execute(@ReqParam("name") String name, @ReqParam("age") int age, @ReqParam("date") Date date) {
-        System.out.println("Hello Request ,the name is " + name + ", age is " + age);
-        System.out.println("date is " + date);
+@MappingTo("/scene/login.do")
+public class Login4Scene {
+    public void execute(@Valid("login") @Params LoginForm4Scene loginForm, ValidInvoker valid, RenderInvoker render) {
+        if (valid.isValid()) {
+            render.renderTo("htm", "/userInfo.htm");
+        } else {
+            render.put("loginForm", loginForm);
+            render.renderTo("htm", "/scene.htm");//使用 htm 引擎渲染页面。
+        }
     }
 }
