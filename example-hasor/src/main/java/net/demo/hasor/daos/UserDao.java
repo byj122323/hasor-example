@@ -2,7 +2,7 @@ package net.demo.hasor.daos;
 import net.demo.hasor.domain.UserDTO;
 import net.hasor.core.Inject;
 import net.hasor.db.jdbc.core.JdbcTemplate;
-import org.apache.commons.lang3.StringUtils;
+import net.hasor.db.jdbc.paramer.BeanSqlParameterSource;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,27 +15,32 @@ public class UserDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
     //
+    //
+    /** 查询所有用户 */
     public List<UserDTO> queryList() throws SQLException {
-        List<UserDTO> userDTOs = this.jdbcTemplate.queryForList("select * from TEST_USER_INFO", UserDTO.class);
-        return userDTOs;
+        return this.jdbcTemplate.queryForList("select * from TEST_USER_INFO", UserDTO.class);
     }
-    //
-    //
-    //
-    public boolean insertUser(UserDTO userDO) {
+    /** 新增用户 */
+    public boolean insertUser(UserDTO userDO) throws Exception {
         //
-        return false;
+        int execute = this.jdbcTemplate.update("insert into TEST_USER_INFO ("//
+                + "    `account`,`email`,`password`,`nick`,`create_time`,`modify_time`"//
+                + ") values ("//
+                + "    :account,:email,:password,:nick,:create_time,:modify_time" + //
+                ");", new BeanSqlParameterSource(userDO));
+        //
+        return execute == 1;
     }
-    public UserDTO queryUserInfoByAccount(long userID) {
-        if (userID > 1000) {
-            return new UserDTO();
-        }
-        return null;
+    /** 根据ID查询用户 */
+    public UserDTO queryUserInfoByUserID(long userID) throws SQLException {
+        return this.jdbcTemplate.queryForObject(//
+                "select * from TEST_USER_INFO where id = ?", //
+                UserDTO.class, userID);
     }
-    public UserDTO queryUserInfoByAccount(String account) {
-        if (StringUtils.equalsIgnoreCase(account, "zyc")) {
-            return new UserDTO();
-        }
-        return null;
+    /** 根据帐号查询用户 */
+    public UserDTO queryUserInfoByAccount(String account) throws SQLException {
+        return this.jdbcTemplate.queryForObject(//
+                "select * from TEST_USER_INFO where account = ?", //
+                UserDTO.class, account);
     }
 }

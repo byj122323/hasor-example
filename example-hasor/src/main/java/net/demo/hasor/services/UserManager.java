@@ -24,6 +24,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static net.hasor.db.transaction.Propagation.REQUIRED;
@@ -38,26 +39,22 @@ public class UserManager {
     private UserDao userDao;
     //
     /** 查询列表 */
-    public List<UserDO> queryList() throws SQLException {
-        try {
-            List<UserDTO> userDOs = userDao.queryList();
-            List<UserDO> userList = new ArrayList<UserDO>();
-            for (UserDTO dto : userDOs) {
-                UserDO userDO = new UserDO();
-                BeanUtils.copyProperties(userDO, dto);
-                userDO.setCreateTime(dto.getCreate_time());
-                userDO.setModifyTime(dto.getModify_time());
-                userList.add(userDO);
-            }
-            return userList;
-        } catch (Exception e) {
-            throw new SQLException(e);
+    public List<UserDO> queryList() throws Exception {
+        List<UserDTO> userDOs = userDao.queryList();
+        List<UserDO> userList = new ArrayList<UserDO>();
+        for (UserDTO dto : userDOs) {
+            UserDO userDO = new UserDO();
+            BeanUtils.copyProperties(userDO, dto);
+            userDO.setCreateTime(new Date(dto.getCreate_time().getTime()));
+            userDO.setModifyTime(new Date(dto.getModify_time().getTime()));
+            userList.add(userDO);
         }
+        return userList;
     }
     //
-    /** 添加用户 */
+    /** 添加用户（单条数据操作事务性无意义，这里纯属演示） */
     @Transactional(propagation = REQUIRED)
-    public void addUser(UserDTO userDO) throws SQLException {
+    public void addUser(UserDTO userDO) throws Exception {
         boolean save = this.userDao.insertUser(userDO);
         if (!save) {
             throw new SQLException("保存失败。");

@@ -19,9 +19,9 @@ import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import net.hasor.core.AppContext;
-import net.hasor.web.render.Render;
-import net.hasor.web.render.RenderEngine;
-import net.hasor.web.render.RenderInvoker;
+import net.hasor.web.Render;
+import net.hasor.web.RenderEngine;
+import net.hasor.web.RenderInvoker;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -30,9 +30,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
-import java.util.Set;
 /**
- *
+ * html htm 渲染器
  * @version : 2016年1月3日
  * @author 赵永春(zyc@hasor.net)
  */
@@ -51,38 +50,25 @@ public class FreemarkerRender implements RenderEngine {
         this.configuration.setLocalizedLookup(false);//是否开启国际化false
         this.configuration.setClassicCompatible(true);//null值测处理配置
         //
-        // - 各种工具
+        // - 各种工具&变量
         this.configuration.setSharedVariable("escapeHtml", new StringEscapeUtils());//HTML 转译,防止XSS使用。
         this.configuration.setSharedVariable("stringUtils", new StringUtils());
-        //
-        // - 系统服务
-        Set<Class<?>> serviceSet = appContext.getEnvironment().findClass(Service.class);
-        for (Class<?> service : serviceSet) {
-            if (service == Service.class) {
-                continue;
-            }
-            Service ser = service.getAnnotation(Service.class);
-            if (ser != null && StringUtils.isNotBlank(ser.value())) {
-                this.configuration.setSharedVariable(ser.value(), appContext.getInstance(service));
-            }
-        }
-        //
-        // - 环境变量
         this.configuration.setSharedVariable("ctx_path", servletContext.getContextPath());
+    }
+    @Override
+    public boolean exist(String template) throws IOException {
+        return this.configuration.getTemplateLoader().findTemplateSource(template) != null;
     }
     @Override
     public void process(RenderInvoker renderData, Writer writer) throws Throwable {
         Template temp = this.configuration.getTemplate(renderData.renderTo());
+        if (temp == null)
+            return;
         //
         HashMap<String, Object> data = new HashMap<String, Object>();
         for (String key : renderData.keySet()) {
             data.put(key, renderData.get(key));
         }
-        //
         temp.process(data, writer);
-    }
-    @Override
-    public boolean exist(String template) throws IOException {
-        return this.configuration.getTemplateLoader().findTemplateSource(template) != null;
     }
 }

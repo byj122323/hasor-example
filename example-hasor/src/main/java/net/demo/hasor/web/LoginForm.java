@@ -13,30 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.services;
-import net.hasor.core.Inject;
-import net.hasor.core.InjectSettings;
-import net.hasor.core.Singleton;
-
-import javax.servlet.ServletContext;
+package net.demo.hasor.web;
+import net.hasor.web.annotation.ReqParam;
+import net.hasor.web.valid.ValidBy;
 /**
- * Hasor 定义的环境配置Bean
- * @version : 2016年11月07日
+ * 登录表单,指定 LoginFormValidation 类为它的验证器。
+ * @version : 2016年1月10日
  * @author 赵永春(zyc@hasor.net)
  */
-@Singleton
-public class EnvironmentConfig {
-    //注入环境变量： env.config
-    @InjectSettings("${envType}")
-    private String         envType;
-    @Inject
-    private ServletContext servletContext;
+@ValidBy(LoginFormValidation.class)
+public class LoginForm {
+    @ReqParam("account")
+    private String account;
+    @ReqParam("password")
+    private String password;
     //
-    //
-    public String getEnvType() {
-        return envType;
+    public String getAccount() {
+        return account;
     }
-    public ServletContext getServletContext() {
-        return servletContext;
+    public void setAccount(String account) {
+        this.account = account;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

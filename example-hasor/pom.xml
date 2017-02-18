@@ -40,16 +40,17 @@
             <groupId>net.hasor</groupId>
             <artifactId>hasor-core</artifactId>
         </dependency>
-        <!-- RSF (选配) -->
+        <!-- RPC框架 -->
         <dependency>
             <groupId>net.hasor</groupId>
             <artifactId>hasor-rsf</artifactId>
         </dependency>
-        <!-- Center (选配) -->
+        <!-- 分布式PRC扩展 -->
         <dependency>
             <groupId>net.hasor</groupId>
             <artifactId>hasor-registry</artifactId>
         </dependency>
+        
         <!-- RPC 例子接口定义 -->
         <dependency>
             <groupId>net.hasor</groupId>

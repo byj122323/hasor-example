@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.demo.hasor.web.valids;
+package ttmmpp.valids.scene;
 import net.demo.hasor.daos.UserDao;
 import net.demo.hasor.domain.UserDTO;
-import net.demo.hasor.web.forms.LoginForm;
+import ttmmpp.forms.LoginForm4Scene;
 import net.hasor.core.Inject;
 import net.hasor.web.valid.ValidErrors;
 import net.hasor.web.valid.Validation;
@@ -26,15 +26,12 @@ import org.apache.commons.lang3.StringUtils;
  * @version : 2016年1月1日
  * @author 赵永春(zyc@hasor.net)
  */
-public class DataBaseValidation implements Validation<LoginForm> {
+public class LoginFormValidation4Scene implements Validation<LoginForm4Scene> {
     @Inject
     private UserDao userDao;
-    @Override
-    public void doValidation(String validType, LoginForm dataForm, ValidErrors errors) {
-        if (!errors.isValid()) {
-            return;
-        }
-        //
+    //
+    // - 登录验证
+    private void doValidLogin(LoginForm4Scene dataForm, ValidErrors errors) {
         String account = dataForm.getAccount();
         String password = dataForm.getPassword();
         UserDTO userInfo = userDao.queryUserInfoByAccount(account);
@@ -46,6 +43,34 @@ public class DataBaseValidation implements Validation<LoginForm> {
             errors.addError("login", "登陆失败,密码错误。");
             return;
         }
-        //
+    }
+    // - 注册登录
+    private void doValidSignUp(LoginForm4Scene dataForm, ValidErrors errors) {
+        UserDTO userInfo = this.userDao.queryUserInfoByAccount(dataForm.getAccount());
+        if (userInfo != null) {
+            errors.addError("signup", "帐号已经被使用,请换一个注册。");
+        }
+    }
+    //
+    public void doValidation(String validType, LoginForm4Scene dataForm, ValidErrors errors) {
+        // -通用验证逻辑
+        if (StringUtils.isBlank(dataForm.getAccount())) {
+            errors.addError("account", "帐号为空。");
+        }
+        if (StringUtils.isBlank(dataForm.getPassword())) {
+            errors.addError("password", "密码为空。");
+        }
+        if (!errors.isValid()) {
+            return;
+        }
+        // -场景化差异
+        if (StringUtils.equalsIgnoreCase("signup", validType)) {
+            this.doValidSignUp(dataForm, errors);   // 注册
+            return;
+        }
+        if (StringUtils.equalsIgnoreCase("login", validType)) {
+            this.doValidLogin(dataForm, errors);    // 登录
+            return;
+        }
     }
 }

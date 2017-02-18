@@ -16,7 +16,6 @@
 package net.demo.hasor.core;
 import net.hasor.web.WebApiBinder;
 import net.hasor.web.WebModule;
-import net.hasor.web.render.RenderEngine;
 /**
  *
  * @version : 2015年12月25日
@@ -26,17 +25,11 @@ public class StartModule extends WebModule {
     @Override
     public void loadModule(WebApiBinder apiBinder) throws Throwable {
         //
-        apiBinder.setEncodingCharacter("utf-8", "utf-8");
-        apiBinder.scanMappingTo(); //扫描所有 @MappingTo 注解
+        apiBinder.setEncodingCharacter("utf-8", "utf-8");   //设置请求响应编码
+        apiBinder.scanAnnoRender();                         //扫描并注册页面渲染器，所有 @Render 注解
+        apiBinder.scanMappingTo();                          //扫描所有 @MappingTo 注解
         //
-        apiBinder.installModule(new DataSourceModule());
-        apiBinder.bindType(RenderEngine.class).uniqueName().toInstance(new FreemarkerRender());
-        //
-        // .Webs
-        apiBinder.jeeFilter("/*").through(0, new JumpFilter());
-        //
-        //        DateConverter converter = new DateConverter();
-        //        converter.setPattern("yyyy-mm-dd");
-        //        ConverterUtils.register(converter, Date.class);
+        apiBinder.installModule(new DataSourceModule());    //连接数据库
+        apiBinder.installModule(new RpcModule());           //发布分布式服务
     }
 }

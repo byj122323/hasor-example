@@ -15,7 +15,10 @@
  */
 package net.demo.hasor.core;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import net.hasor.core.*;
+import net.hasor.core.ApiBinder;
+import net.hasor.core.AppContext;
+import net.hasor.core.Environment;
+import net.hasor.core.LifeModule;
 import net.hasor.db.DBModule;
 import net.hasor.db.jdbc.core.JdbcTemplate;
 import org.slf4j.Logger;
@@ -56,11 +59,10 @@ public class DataSourceModule implements LifeModule {
         //
         // .数据源
         Environment env = apiBinder.getEnvironment();
-        Settings settings = env.getSettings();
-        String driverString = env.evalString(settings.getString("jdbcSettings.jdbcDriver", ""));
-        String urlString = env.evalString(settings.getString("jdbcSettings.jdbcURL", ""));
-        String userString = env.evalString(settings.getString("jdbcSettings.userName", ""));
-        String pwdString = env.evalString(settings.getString("jdbcSettings.userPassword", ""));
+        String driverString = env.evalString("%jdbc.driver%");
+        String urlString = env.evalString("%jdbc.url%");
+        String userString = env.evalString("%jdbc.user%");
+        String pwdString = env.evalString("%jdbc.password%");
         //
         // .初始化数据库框架
         DataSource mysqlDataSource = createDataSource(driverString, urlString, userString, pwdString);

@@ -1,6 +1,6 @@
-package net.demo.hasor.web.actions.restful;
+package ttmmpp.actions.restful;
 import net.demo.hasor.daos.UserDao;
-import net.demo.hasor.web.forms.UserForm;
+import ttmmpp.forms.UserForm;
 import net.hasor.core.Inject;
 import net.hasor.web.Invoker;
 import net.hasor.web.annotation.*;
