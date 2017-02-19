@@ -27,6 +27,7 @@
         <downloadSources>true</downloadSources>
         <downloadJavadocs>true</downloadJavadocs>
         <maven.test.skip>true</maven.test.skip>
+        <spring.boot.version>1.5.1.RELEASE</spring.boot.version>
     </properties>
 
     <!-- 构建描述 -->
@@ -161,6 +162,34 @@
                 <version>4.12</version>
                 <scope>test</scope>
             </dependency>
+
+            <!-- Spring Boot begin -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>log4j-over-slf4j</artifactId>
+                        <groupId>org.slf4j</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-tomcat</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <!-- Spring Boot end -->
         </dependencies>
     </dependencyManagement>
 </project>
