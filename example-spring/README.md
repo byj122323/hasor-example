@@ -9,7 +9,7 @@
 <dependency>
     <groupId>net.hasor</groupId>
     <artifactId>hasor-rsf</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
@@ -20,6 +20,6 @@
 <dependency>
     <groupId>net.hasor</groupId>
     <artifactId>hasor-registry</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.0</version>
 </dependency>
 ```
