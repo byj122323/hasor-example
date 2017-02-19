@@ -11,102 +11,10 @@
     <groupId>net.hasor</groupId>
     <artifactId>example-spring</artifactId>
     <version>1.0</version>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
 
-    <!-- 构建描述 -->
-    <build>
-        <plugins>
-            <!-- Compile -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <encoding>UTF8</encoding>
-                    <compilerArguments>
-                        <extdirs>src\main\webapp\WEB-INF\lib</extdirs>
-                    </compilerArguments>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    <!-- 引用依赖 -->
-    <dependencies>
-        <!-- Hasor -->
-        <dependency>
-            <groupId>net.hasor</groupId>
-            <artifactId>hasor-core</artifactId>
-        </dependency>
-        <!-- RSF (选配) -->
-        <dependency>
-            <groupId>net.hasor</groupId>
-            <artifactId>hasor-rsf</artifactId>
-        </dependency>
-        <!-- Center (选配) -->
-        <dependency>
-            <groupId>net.hasor</groupId>
-            <artifactId>hasor-registry</artifactId>
-        </dependency>
-        <!-- RPC 例子接口定义 -->
-        <dependency>
-            <groupId>net.hasor</groupId>
-            <artifactId>example-rpc-domain</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <!-- freemarker -->
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-        </dependency>
-
-        <!-- servlet -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-
-        <!-- logger -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-        </dependency>
-
-        <!-- DB begin -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>c3p0</groupId>
-            <artifactId>c3p0</artifactId>
-        </dependency>
-        <!-- DB end -->
-
-        <!-- apache -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-        </dependency>
-
-        <!-- Test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>example-spring-consumer</module>
+        <module>example-spring-provider</module>
+    </modules>
 </project>
