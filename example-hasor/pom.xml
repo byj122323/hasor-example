@@ -50,11 +50,11 @@
             <groupId>net.hasor</groupId>
             <artifactId>hasor-registry</artifactId>
         </dependency>
-        
+
         <!-- RPC 例子接口定义 -->
         <dependency>
             <groupId>net.hasor</groupId>
-            <artifactId>rsf-client</artifactId>
+            <artifactId>example-rpc-domain</artifactId>
             <version>1.0.0</version>
         </dependency>
 

@@ -16,7 +16,7 @@
 package net.demo.hasor.core;
 import net.hasor.web.WebApiBinder;
 import net.hasor.web.WebModule;
-import net.hasor.web.render.RenderEngine;
+import net.hasor.web.RenderEngine;
 /**
  *
  * @version : 2015年12月25日

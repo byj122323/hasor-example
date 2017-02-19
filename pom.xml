@@ -12,12 +12,13 @@
     <name>example-root</name>
 
     <modules>
-        <module>rsf-client</module>
-        <module>rsf-consumer</module>
-        <module>rsf-provider</module>
+        <module>example-rpc-domain</module>
+        <module>example-rsf-consumer</module>
+        <module>example-rsf-provider</module>
         <module>example-hasor</module>
-        <module>example-spring</module>
         <module>example-jfinal</module>
+        <module>example-spring</module>
+        <module>example-spring-boot</module>
     </modules>
 
     <!-- 配置属性 -->
@@ -61,7 +62,7 @@
             <dependency>
                 <groupId>net.hasor</groupId>
                 <artifactId>hasor-core</artifactId>
-                <version>3.1.1</version>
+                <version>3.1.2-SNAPSHOT</version>
             </dependency>
             <!-- RSF (选配) -->
             <dependency>
