@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 package net.example.jfinal.provider;
-import net.demo.client.consumer.UserService;
-import net.demo.client.domain.UserDO;
+import net.example.domain.consumer.UserService;
+import net.example.domain.domain.UserDO;
 import net.example.jfinal.domain.UserDTO;
 import net.example.jfinal.services.UserManager;
 import net.hasor.core.Inject;

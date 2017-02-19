@@ -13,21 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.example.jfinal.provider;
-import net.example.domain.consumer.MessageService;
-import net.hasor.rsf.RsfResult;
+package net.example.hasor.provider;
+import net.example.domain.consumer.EchoService;
+import net.hasor.core.InjectSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
- * 无责任消息推送
+ * 在你call rpc 时候，远程服务器会回应你一句 它在配置文件里配置的信息，配置的信息是通过依赖注入获取的。
  * @version : 2016年11月07日
  * @author 赵永春(zyc@hasor.net)
  */
-public class MessageServiceImpl implements MessageService {
+public class EchoServiceImpl implements EchoService {
     protected Logger logger = LoggerFactory.getLogger(getClass());
+    @InjectSettings("myApp.configString")
+    private String messageToYou;
+    //
     @Override
-    public RsfResult sayHello(String echo) {
-        logger.info("you say " + echo);
-        return null; //  <-- 标记了 @RsfMessage 的服务接口，其执行结果及可能抛出的异常都会被客户端忽略，因此返回值变得无意义。
+    public String sayHello(String echo) {
+        String youSay = "you say " + echo;
+        logger.info(youSay);
+        return youSay + " , server to You -> " + this.messageToYou;
     }
 }

@@ -13,21 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.example.jfinal.provider;
-import net.example.domain.consumer.MessageService;
+package net.example.domain.consumer;
+import net.hasor.rsf.RsfMessage;
 import net.hasor.rsf.RsfResult;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 /**
- * 无责任消息推送
- * @version : 2016年11月07日
+ * 消息接口
+ * @version : 2015年11月27日
  * @author 赵永春(zyc@hasor.net)
  */
-public class MessageServiceImpl implements MessageService {
-    protected Logger logger = LoggerFactory.getLogger(getClass());
-    @Override
-    public RsfResult sayHello(String echo) {
-        logger.info("you say " + echo);
-        return null; //  <-- 标记了 @RsfMessage 的服务接口，其执行结果及可能抛出的异常都会被客户端忽略，因此返回值变得无意义。
-    }
+@RsfMessage
+public interface MessageService {
+    public RsfResult sayHello(String echo) throws InterruptedException;
 }

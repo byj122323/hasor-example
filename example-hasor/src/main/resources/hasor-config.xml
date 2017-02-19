@@ -6,7 +6,7 @@
         <!-- （选配）如果有包扫描操作，该配置会降低扫描范围，提升扫描效率 -->
         <loadPackages>net.demo.hasor.*</loadPackages>
         <!-- 程序启动入口 -->
-        <startup>net.demo.hasor.core.StartModule</startup>
+        <startup>net.example.hasor.core.StartModule</startup>
 
         <environmentVar>
 

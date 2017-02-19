@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.example.jfinal.core;
+package net.example.hasor.core;
 import net.example.domain.consumer.EchoService;
 import net.example.domain.consumer.MessageService;
 import net.example.domain.consumer.UserService;
-import net.example.jfinal.provider.EchoServiceImpl;
-import net.example.jfinal.provider.MessageServiceImpl;
-import net.example.jfinal.provider.UserServiceImpl;
+import net.example.hasor.provider.EchoServiceImpl;
+import net.example.hasor.provider.MessageServiceImpl;
+import net.example.hasor.provider.UserServiceImpl;
 import net.hasor.rsf.RsfApiBinder;
 import net.hasor.rsf.RsfModule;
 /**

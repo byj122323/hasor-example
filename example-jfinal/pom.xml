@@ -13,54 +13,37 @@
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <!-- 构建描述 -->
-    <build>
-        <plugins>
-            <!-- Compile -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <encoding>UTF8</encoding>
-                    <compilerArguments>
-                        <extdirs>src\main\webapp\WEB-INF\lib</extdirs>
-                    </compilerArguments>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <!-- 引用依赖 -->
     <dependencies>
-        <!-- JFinal -->
-        <dependency>
-            <groupId>com.jfinal</groupId>
-            <artifactId>jfinal</artifactId>
-            <version>2.2</version>
-        </dependency>
-        <!-- Hasor -->
-        <dependency>
-            <groupId>net.hasor</groupId>
-            <artifactId>hasor-core</artifactId>
-        </dependency>
-        <!-- RSF (选配) -->
-        <dependency>
-            <groupId>net.hasor</groupId>
-            <artifactId>hasor-rsf</artifactId>
-        </dependency>
-        <!-- Center (选配) -->
-        <dependency>
-            <groupId>net.hasor</groupId>
-            <artifactId>hasor-registry</artifactId>
-        </dependency>
         <!-- RPC 例子接口定义 -->
         <dependency>
             <groupId>net.hasor</groupId>
             <artifactId>example-rpc-domain</artifactId>
             <version>1.0.0</version>
+        </dependency>
+
+        <!-- Hasor -->
+        <dependency>
+            <groupId>net.hasor</groupId>
+            <artifactId>hasor-core</artifactId>
+        </dependency>
+
+        <!-- RPC框架 -->
+        <dependency>
+            <groupId>net.hasor</groupId>
+            <artifactId>hasor-rsf</artifactId>
+        </dependency>
+
+        <!-- 分布式PRC扩展 -->
+        <dependency>
+            <groupId>net.hasor</groupId>
+            <artifactId>hasor-registry</artifactId>
+        </dependency>
+
+        <!-- JFinal -->
+        <dependency>
+            <groupId>com.jfinal</groupId>
+            <artifactId>jfinal</artifactId>
         </dependency>
 
         <!-- freemarker -->
@@ -76,12 +59,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- logger -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-        </dependency>
-
         <!-- DB begin -->
         <dependency>
             <groupId>mysql</groupId>
@@ -93,7 +70,7 @@
         </dependency>
         <!-- DB end -->
 
-        <!-- apache -->
+        <!-- apache begin -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -102,12 +79,6 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
         </dependency>
-
-        <!-- Test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!-- apache end -->
     </dependencies>
 </project>
