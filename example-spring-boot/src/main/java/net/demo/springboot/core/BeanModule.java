@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 package net.demo.springboot.core;
-import net.demo.client.consumer.EchoService;
-import net.demo.client.consumer.MessageService;
-import net.demo.client.consumer.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 /**
  * Bean
  * @version : 2017年02月18日

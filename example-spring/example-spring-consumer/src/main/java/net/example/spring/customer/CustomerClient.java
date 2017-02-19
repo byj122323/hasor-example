@@ -1,14 +1,9 @@
 package net.example.spring.customer;
 import net.example.domain.consumer.EchoService;
 import net.example.domain.consumer.MessageService;
-import net.example.domain.consumer.UserService;
-import net.example.domain.domain.UserDO;
 import net.hasor.rsf.RsfResult;
-import net.hasor.rsf.json.JSON;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.List;
 /**
  *
  * @version : 2014年9月12日
@@ -33,11 +28,6 @@ public class CustomerClient {
             System.out.println(res);
         }
         System.out.println("@@@@@@@@@@@@@@");
-        //
-        //
-        UserService userService = (UserService) applicationContext.getBean("userService");
-        List<UserDO> userDOS = userService.queryUser();
-        System.out.println("@@@@@@@@@@@@@@" + JSON.toString(userDOS));
         //
         System.out.println("server start.");
     }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 package net.demo.springboot.provider;
-import net.demo.client.consumer.MessageService;
+import net.example.domain.consumer.MessageService;
 import net.hasor.rsf.RsfResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

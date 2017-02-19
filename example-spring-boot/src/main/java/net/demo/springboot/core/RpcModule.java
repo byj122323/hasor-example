@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 package net.demo.springboot.core;
-import net.demo.client.consumer.EchoService;
-import net.demo.client.consumer.MessageService;
-import net.demo.client.consumer.UserService;
+import net.example.domain.consumer.EchoService;
+import net.example.domain.consumer.MessageService;
+import net.example.domain.consumer.UserService;
 import net.hasor.rsf.RsfApiBinder;
 import net.hasor.rsf.RsfModule;
 import org.springframework.beans.factory.annotation.Autowired;

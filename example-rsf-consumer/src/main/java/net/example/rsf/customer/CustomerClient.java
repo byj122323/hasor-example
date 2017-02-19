@@ -35,14 +35,9 @@ public class CustomerClient {
         System.out.println("server start.");
         //
         //Client -> Server
-        //
-        UserService userService = clientContext.getInstance(UserService.class);
-        List<UserDO> userDOS = userService.queryUser();
-        System.out.println(JSON.toString(userDOS));
-        //
         EchoService echoService = clientContext.getInstance(EchoService.class);
-        for (int i = 0; i < 2080; i++) {
-            Thread.sleep(500);
+        for (int i = 0; i < 200; i++) {
+            Thread.sleep(100);
             try {
                 String res = echoService.sayHello("Hello Word");
                 System.out.println(res);
@@ -52,7 +47,7 @@ public class CustomerClient {
         }
         //
         MessageService messageService = clientContext.getInstance(MessageService.class);
-        for (int i = 0; i < 2080; i++) {
+        for (int i = 0; i < 200; i++) {
             try {
                 RsfResult res = messageService.sayHello("Hello Word");//客户端会瞬间返回,服务端执行一个消息需要 500毫秒。
                 System.out.println(res);
@@ -61,5 +56,8 @@ public class CustomerClient {
             }
         }
         //
+        UserService userService = clientContext.getInstance(UserService.class);
+        List<UserDO> userDOS = userService.queryUser();
+        System.out.println(JSON.toString(userDOS));
     }
 }

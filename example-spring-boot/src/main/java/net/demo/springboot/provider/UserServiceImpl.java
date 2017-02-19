@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 package net.demo.springboot.provider;
-import net.demo.client.consumer.UserService;
-import net.demo.client.domain.UserDO;
+import net.example.domain.consumer.UserService;
+import net.example.domain.domain.UserDO;
 import net.demo.springboot.services.UserManager;
 import net.hasor.core.utils.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;

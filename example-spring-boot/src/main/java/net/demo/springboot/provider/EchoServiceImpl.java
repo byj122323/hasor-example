@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 package net.demo.springboot.provider;
-import net.demo.client.consumer.EchoService;
+import net.example.domain.consumer.EchoService;
 import net.hasor.core.InjectSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
