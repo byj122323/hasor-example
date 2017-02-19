@@ -60,4 +60,21 @@ public class UserManager {
             throw new SQLException("保存失败。");
         }
     }
+    //
+    /** 校验用户 */
+    public boolean checkLogin(String account, String password) {
+        if (account == null || password == null) {
+            return false;
+        }
+        try {
+            UserDTO userDTO = this.userDao.queryUserInfoByAccount(account);
+            if (userDTO == null) {
+                return false;
+            }
+            return password.equals(userDTO.getPassword());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

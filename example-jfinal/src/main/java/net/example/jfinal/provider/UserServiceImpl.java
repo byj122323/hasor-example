@@ -16,9 +16,10 @@
 package net.example.jfinal.provider;
 import net.demo.client.consumer.UserService;
 import net.demo.client.domain.UserDO;
+import net.example.jfinal.domain.UserDTO;
 import net.example.jfinal.services.UserManager;
 import net.hasor.core.Inject;
-import org.apache.commons.beanutils.BeanUtils;
+import net.hasor.core.utils.ExceptionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,16 +31,29 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Inject
     private UserManager userManager;
+    //
+    //
     @Override
-    public List<UserDO> queryUser() throws Exception {
-        List<net.example.jfinal.domain.UserDO> userDOs = userManager.queryList();
-        List<UserDO> res = new ArrayList<UserDO>();
-        for (net.example.jfinal.domain.UserDO userDO : userDOs) {
-            UserDO extUserDO = new UserDO();
-            BeanUtils.copyProperties(extUserDO, userDO);
-            extUserDO.setCreateTime(userDO.getCreate_time());
-            extUserDO.setModifyTime(userDO.getModify_time());
+    public List<UserDO> queryUser() {
+        // 远程 RPC 接口实现，不建议将底层 JFinal 数据模型透出给客户端，因此这里做数据转换。
+        // tips：JFinal底层 Module，不是一个纯粹的 domain ，它是带有 AR 性质的富Domain。透出富Domain，相当于暴露数据结构给客户端，有数据安全风险。
+        try {
+            List<UserDTO> userDOs = userManager.queryList();
+            List<UserDO> userList = new ArrayList<UserDO>();
+            for (UserDTO user : userDOs) {
+                UserDO userDO = new UserDO();
+                userDO.setId(user.getInt("id"));
+                userDO.setAccount(user.getStr("account"));
+                userDO.setNick(user.getStr("nick"));
+                userDO.setEmail(user.getStr("email"));
+                userDO.setPassword(user.getStr("password"));
+                userDO.setModifyTime(user.getDate("modify_time"));
+                userDO.setCreateTime(user.getDate("create_time"));
+                userList.add(userDO);
+            }
+            return userList;
+        } catch (Exception e) {
+            throw ExceptionUtils.toRuntimeException(e);
         }
-        return res;
     }
 }

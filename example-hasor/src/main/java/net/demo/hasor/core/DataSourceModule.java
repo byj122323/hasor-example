@@ -16,26 +16,29 @@
 package net.demo.hasor.core;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import net.hasor.core.ApiBinder;
-import net.hasor.core.AppContext;
 import net.hasor.core.Environment;
-import net.hasor.core.LifeModule;
+import net.hasor.core.Module;
 import net.hasor.db.DBModule;
-import net.hasor.db.jdbc.core.JdbcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
-import java.util.List;
 /**
  * 数据库链接 & DAO
  * @version : 2016年1月10日
  * @author 赵永春(zyc@hasor.net)
  */
-public class DataSourceModule implements LifeModule {
+public class DataSourceModule implements Module {
     protected Logger logger = LoggerFactory.getLogger(getClass());
-    //
-    private DataSource createDataSource(String driverString, String urlString, String userString, String pwdString) throws PropertyVetoException {
+    @Override
+    public void loadModule(ApiBinder apiBinder) throws Throwable {
+        //
+        // .数据库配置
+        Environment env = apiBinder.getEnvironment();
+        String driverString = env.evalString("%jdbc.driver%");
+        String urlString = env.evalString("%jdbc.url%");
+        String userString = env.evalString("%jdbc.user%");
+        String pwdString = env.evalString("%jdbc.password%");
+        //
+        // .数据源
         int poolMaxSize = 40;
         logger.info("C3p0 Pool Info maxSize is ‘{}’ driver is ‘{}’ jdbcUrl is‘{}’", poolMaxSize, driverString, urlString);
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -52,46 +55,8 @@ public class DataSourceModule implements LifeModule {
         dataSource.setAcquireRetryAttempts(30);
         dataSource.setAcquireIncrement(1);
         dataSource.setMaxIdleTime(25000);
-        return dataSource;
-    }
-    @Override
-    public void loadModule(ApiBinder apiBinder) throws Throwable {
         //
-        // .数据源
-        Environment env = apiBinder.getEnvironment();
-        String driverString = env.evalString("%jdbc.driver%");
-        String urlString = env.evalString("%jdbc.url%");
-        String userString = env.evalString("%jdbc.user%");
-        String pwdString = env.evalString("%jdbc.password%");
-        //
-        // .初始化数据库框架
-        DataSource mysqlDataSource = createDataSource(driverString, urlString, userString, pwdString);
-        apiBinder.installModule(new DBModule(mysqlDataSource));
-        //
-    }
-    @Override
-    public void onStart(AppContext appContext) throws Throwable {
-        logger.info("loadSQL");
-        //
-        // .查询某个表是否存在
-        boolean needRunSQL = true;
-        JdbcTemplate jdbcTemplate = appContext.getInstance(JdbcTemplate.class);
-        List<String> records = jdbcTemplate.queryForList("SHOW TABLES LIKE '%';", String.class);
-        for (String record : records) {
-            if ("TEST_USER_INFO".equalsIgnoreCase(record)) {
-                needRunSQL = false;
-                break;
-            }
-        }
-        // .如果不存在 TEST_USER_INFO 表，那么使用 sql 脚本初始化它
-        if (needRunSQL) {
-            jdbcTemplate.loadSQL("utf-8", "ddl_sql_user_info.sql");
-        }
-        //
-        logger.info("loadSQL -> finish.");
-    }
-    @Override
-    public void onStop(AppContext appContext) throws Throwable {
-        //
+        // .数据库框架
+        apiBinder.installModule(new DBModule(dataSource));
     }
 }

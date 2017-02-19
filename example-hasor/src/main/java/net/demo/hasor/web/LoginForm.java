@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package net.demo.hasor.web;
+import net.hasor.web.annotation.PathParam;
 import net.hasor.web.annotation.ReqParam;
 import net.hasor.web.valid.ValidBy;
 /**
@@ -23,11 +24,19 @@ import net.hasor.web.valid.ValidBy;
  */
 @ValidBy(LoginFormValidation.class)
 public class LoginForm {
+    @PathParam("action")
+    private String action;
     @ReqParam("account")
     private String account;
     @ReqParam("password")
     private String password;
     //
+    public String getAction() {
+        return action;
+    }
+    public void setAction(String action) {
+        this.action = action;
+    }
     public String getAccount() {
         return account;
     }

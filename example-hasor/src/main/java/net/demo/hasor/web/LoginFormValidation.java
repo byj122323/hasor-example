@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 package net.demo.hasor.web;
-import net.hasor.web.valid.ValidErrors;
+import net.demo.hasor.services.UserManager;
+import net.hasor.core.Inject;
+import net.hasor.web.valid.ValidInvoker;
 import net.hasor.web.valid.Validation;
 import org.apache.commons.lang3.StringUtils;
 /**
@@ -23,13 +25,22 @@ import org.apache.commons.lang3.StringUtils;
  * @author 赵永春(zyc@hasor.net)
  */
 public class LoginFormValidation implements Validation<LoginForm> {
+    @Inject
+    private UserManager userManager;
     @Override
-    public void doValidation(String validType, LoginForm dataForm, ValidErrors errors) {
+    public void doValidation(String validType, LoginForm dataForm, ValidInvoker errors) {
+        // .填写验证
         if (StringUtils.isBlank(dataForm.getAccount())) {
             errors.addError("loginMessage", "帐号为空。");
         }
         if (StringUtils.isBlank(dataForm.getPassword())) {
             errors.addError("loginMessage", "密码为空。");
+        }
+        // .帐号验证
+        boolean checkLogin = this.userManager.checkLogin(//
+                dataForm.getAccount(), dataForm.getPassword());
+        if (!checkLogin) {
+            errors.addError("loginMessage", "帐号密码验证失败。");
         }
     }
 }

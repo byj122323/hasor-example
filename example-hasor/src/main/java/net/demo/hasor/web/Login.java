@@ -17,7 +17,6 @@ package net.demo.hasor.web;
 import net.hasor.web.RenderInvoker;
 import net.hasor.web.annotation.MappingTo;
 import net.hasor.web.annotation.Params;
-import net.hasor.web.annotation.PathParam;
 import net.hasor.web.valid.Valid;
 import net.hasor.web.valid.ValidInvoker;
 
@@ -29,19 +28,21 @@ import java.io.IOException;
  */
 @MappingTo("/login.{action}")
 public class Login {
-    public void execute(@PathParam("action") String action, @Valid() @Params LoginForm loginForm,//
+    public void execute(@Valid() @Params LoginForm loginForm,//
             ValidInvoker valid, RenderInvoker render) throws IOException {
         //
-        if (!"do".equalsIgnoreCase(action)) {
+        // .不处理非表单请求
+        if (!"do".equalsIgnoreCase(loginForm.getAction())) {
             valid.clearValidErrors();
             return;
         }
         //
+        // .帐号验证成功，跳转到 list 页
         if (valid.isValid()) {
             render.getHttpResponse().sendRedirect("/user_list.htm");
             return;
         }
-        //
+        // .验证失败，回显数据
         render.put("loginForm", loginForm);
         render.renderTo("htm", "/login.htm");
     }

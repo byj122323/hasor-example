@@ -14,46 +14,36 @@
  * limitations under the License.
  */
 package net.example.jfinal.services;
-import net.example.jfinal.domain.UserDO;
+import net.example.jfinal.daos.UserDao;
+import net.example.jfinal.domain.UserDTO;
 import net.hasor.core.Inject;
 import net.hasor.core.Singleton;
 import net.hasor.db.Transactional;
-import org.apache.commons.beanutils.BeanUtils;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import static net.hasor.db.transaction.Propagation.REQUIRED;
 /**
- * 使用 JFinal 的方式查询列表
+ *
  * @version : 2016年11月07日
  * @author 赵永春(zyc@hasor.net)
  */
 @Singleton
 public class UserManager {
     @Inject
-    private EnvironmentConfig environmentConfig;
+    private UserDao userDao;
     //
-    /** JFinal 方式查询列表 */
-    public List<UserDO> queryList() {
-        List<UserDO> userDOs = new UserDO().find("select * from TEST_USER_INFO");
-        for (UserDO info : userDOs)
-            info.recover();
-        return userDOs;
+    /** 查询列表 */
+    public List<UserDTO> queryList() throws Exception {
+        return this.userDao.queryList();
     }
     //
-    /** JFinal 方式，添加用户，使用 Hasor 提供的数据库事务 */
+    /** 添加用户（单条数据操作事务性无意义，这里纯属演示） */
     @Transactional(propagation = REQUIRED)
-    public void addUser(UserDO userDO) throws SQLException {
-        try {
-            UserDO dataUser = new UserDO();
-            BeanUtils.copyProperties(dataUser, userDO);
-            boolean save = dataUser.setupAll().save();
-            if (!save)
-                throw new SQLException("保存失败。");
-        } catch (Exception e) {
-            if (e instanceof SQLException)
-                throw (SQLException) e;
+    public void addUser(UserDTO userDO) throws Exception {
+        boolean save = this.userDao.insertUser(userDO);
+        if (!save) {
             throw new SQLException("保存失败。");
         }
     }
