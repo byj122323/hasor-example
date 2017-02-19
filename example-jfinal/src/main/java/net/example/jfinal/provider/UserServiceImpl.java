@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
             List<UserDO> userList = new ArrayList<UserDO>();
             for (UserDTO user : userDOs) {
                 UserDO userDO = new UserDO();
-                userDO.setId(user.getInt("id"));
+                userDO.setId(user.getLong("id"));
                 userDO.setAccount(user.getStr("account"));
                 userDO.setNick(user.getStr("nick"));
                 userDO.setEmail(user.getStr("email"));

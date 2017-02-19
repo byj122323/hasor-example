@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  */
 public class EchoServiceImpl implements EchoService {
     protected Logger logger = LoggerFactory.getLogger(getClass());
-    @InjectSettings("myApp.configString")
+    @InjectSettings("${myApp.configString}")
     private String messageToYou;
     //
     @Override
