@@ -3,8 +3,8 @@
 ## SpringBoot 整合 Hasor 之后 SpringBoot 哪些方面会有显著提升？
 
 多语言RPC
-1. 搭配 RSF 框架之后，Hasor 可以为 JFinal 提供部署完善的RPC服务的能力。
-2. RSF 支持 Hprose 框架协议，您可以通过 Hprose 多语言RPC，为 JFinal 异构技术架构提供支持。
+1. 搭配 RSF 框架之后，Hasor 可以为 SpringBoot 提供部署完善的RPC服务的能力。
+2. RSF 支持 Hprose 框架协议，您可以通过 Hprose 多语言RPC，为 SpringBoot 异构技术架构提供支持。
 ```
 <dependency>
     <groupId>net.hasor</groupId>
